@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>运维管理| 诊断任务管理</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- bootstrap 3.0.2 -->
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <!-- font Awesome -->
+    <link href="../../css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Theme style -->
+    <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link href="../../css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/icon.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/easyui.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        body {
+            font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+        }
+
+        a.logo {
+            font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+        }
+
+        div#userTable_wrapper {
+            overflow-x: auto;
+        }
+
+        label.lab {
+            padding: 5px 0;
+            text-align: center;
+            width: 6%;
+            float: left;
+        }
+
+        label.lab1 {
+            padding: 5px 0;
+            text-align: center;
+            width: 6%;
+            float: left;
+        }
+
+        fieldset {
+            border: 1px solid #c0c0c0;
+            margin-bottom: 1%;
+        }
+
+        fieldset > legend {
+            font-size: 14px;
+            font-weight: bold;
+            padding-left: 2%;
+        }
+
+        .showBtn {
+            display: inline-block !important;
+        }
+
+        .tree-folder-open:before {
+            content: "\f115" !important;
+        }
+
+        .fa {
+            background: none;
+            padding-top: 3px !important;
+        }
+    </style>
+</head>
+
+<body class="skin-blue">
+<header class="header">
+    <a href="#" class="logo">
+        <!-- <img src="../img/logo.png" class="img-circle" alt="User Image" / style="height:35px;width:35px;">
+-->
+        <span>运维管理</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        <div class="navbar-right">
+            <ul class="nav navbar-nav">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="user user-menu">
+                    <a>
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span>注销</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="wrapper row-offcanvas row-offcanvas-left">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="left-side sidebar-offcanvas">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <!-- 左侧导航 -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <!-- 左侧上方用户 -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <i style="color:white;margin-top:10%;" class="fa fa-user fa-3x"></i>
+                </div>
+                <div class="pull-left info">
+                    <p id="name-pull-left">Hello, Jane</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+            <!-- 左侧下方导航 -->
+            <ul class="sidebar-menu">
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-check-square-o"></i> <span>视频质量诊断</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="../diagnose.html"><i class="fa fa-angle-double-right"></i>&nbsp;诊断任务管理</a></li>
+                        <li><a href="../diTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;诊断任务统计</a></li>
+                        <li><a href="../diCameraReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;诊断汇总统计</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-credit-card"></i> <span>视频巡检管理</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="../patrol.html"><i class="fa fa-angle-double-right"></i>&nbsp;巡检任务管理</a></li>
+                        <li><a href="../paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;巡检任务统计</a></li>
+                        <li><a href="../paMulReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;巡检汇总统计</a></li>
+                    </ul>
+                </li>
+                <li class="treeview active">
+                    <a href="#">
+                        <i class="fa fa-check-square-o"></i> <span>人员管理</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="#"><i class="fa fa-angle-double-right"></i>&nbsp;人员浏览</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right"></i>&nbsp;新增人员</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right"></i>&nbsp;签到记录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- 右侧 -->
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <i class="fa fa-dashboard"></i>
+            <h1 style="display:inline;margin-left:1%;">
+                人员管理
+            </h1>
+        </section>
+        <!-- /.content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table">
+                        <tr>
+                            <th>姓名</th>
+                            <th>手机号</th>
+                            <th>职务</th>
+                        </tr>
+                        <tr>
+                            <td>何修宇</td>
+                            <td>123456</td>
+                            <td>站长</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </aside>
+    <!-- /.right-side -->
+</div>
+<!-- ./wrapper -->
+<!-- Modal -->
+<!--修改-->
+
+<script src="../../../js/jquery.min.js" type="text/javascript"></script>
+<script src="../../js/jquery.validate.js" type="text/javascript"></script>
+<script src="../../js/jquery.easyui.min.js" type="text/javascript"></script>
+<script src="../../js/util.js" type="text/javascript"></script>
+<script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../js/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="../../js/datatables/dataTables.bootstrap.min.js" type="text/javascript">
+</script>
+<script src="../../js/My97DatePicker/WdatePicker.js" type="text/javascript">
+</script>
+<script src="../../js/AdminLTE/app.js " type="text/javascript "></script>
+<script src="../../js/index/diagnose.js" type="text/javascript"></script>
+</body>
+
+</html>
