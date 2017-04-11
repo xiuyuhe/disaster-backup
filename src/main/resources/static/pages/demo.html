@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>dd</title>
+    <link href="../css/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../css/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery.min.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="easyui-panel" style="padding:5px;">
+        <ul id="tt" class="easyui-tree"></ul>
+    </div>
+    <div class="col-sm-12">
+        <p class="form-control-static">您选择的设备数为：<span id="num"></span>;设备id为<span id="dId"></span><span class="glyphicon glyphicon-registration-mark"></span></p>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default">下拉菜单</button>
+        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header">header</li>
+            <li><a href="http://www.baidu.com">百度</a></li>
+            <li><a href="www.sina.com">新浪</a></li>
+            <li><a href="www.qq.com">腾讯</a></li>
+        </ul>
+    </div>
+    <script>
+    $('.dropdown-toggle').dropdown()
+    $('#tt').tree({
+        url: 'data.json',
+        method: 'get',
+        animate: true,
+        checkbox: true,
+
+        formatter: function(node) {
+            if (node.state == "open" && !node.attributes.root)
+                var v_text = "<span>" + node.text + "</span>"
+            else
+                var v_text = "<span>" + node.text + "(" + node.attributes.count + ")</span>";
+
+            return v_text;
+
+        },
+        onMouseOver: function(node) {
+            //console.log(node);
+        },
+        onMouseOut: function(node) {
+            //console.log(node);
+        },
+        onCheck: function(node, checked) {
+                var nodes = $('#tt').tree('getChecked');
+                var leafChecked = [];
+                nodes.forEach(function(node) {
+                    var b = $('#tt').tree('isLeaf', node.target);
+                    if (b)
+                        leafChecked.push(node.id);
+                })
+                $('#num').text(leafChecked.length);
+                $('#dId').text(leafChecked.join(','));
+
+            }
+            // onContextMenu: function(e, node) {
+            //     e.preventDefault();
+            //     console.log(e);
+            //     $("#deviceTreeMenu").css({
+            //         left: e.pageX,
+            //         top: e.pageY
+            //     }).removeClass('hide').addClass('show');
+
+        // }
+
+    });
+    </script>
+</body>
+
+</html>

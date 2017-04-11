@@ -1,0 +1,171 @@
+.table .selected {
+    background: #B0BED9!important;
+}
+
+.tab-pane > p {
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.tab-pane > .pane-content > p {
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.tab-pane > p:last-child {
+    margin-bottom: 0px;
+}
+
+.pane-content {
+    margin-top: 20px;
+}
+
+.tree {
+    height: 450px;
+    margin: 0;
+    border-width: 0;
+}
+
+.tree > a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.blockhide {
+    display: none;
+}
+
+.blockmove {
+    overflow: hidden;
+    height: 1px;
+    display: block;
+}
+
+.blockshow {
+    overflow: visible;
+    display: block;
+}
+
+.hideme {
+    overflow: visible;
+    display: none;
+}
+
+.showme {
+    overflow: visible;
+    display: block;
+}
+
+.faisunMenu td {
+    font-size: 12px;
+}
+
+ul.unstyled,
+ol.unstyled {
+    margin-left: 0;
+    list-style: none;
+}
+
+
+/* profile */
+
+.profile-classic .span2 {
+    position: relative;
+}
+
+.profile-classic .spaned {
+    color: #00FF00;
+    font-size: 16px;
+}
+
+.profile-classic li {
+    padding: 8px 0;
+    font-size: 13px;
+    border-top: solid 1px #f5f5f5;
+}
+
+.profile-classic li:first-child {
+    border-top: none;
+}
+
+.profile-classic li span {
+    color: #666;
+    font-size: 13px;
+    margin-right: 7px;
+}
+
+
+/* profile */
+
+.uspacealert {
+    z-index: 10256;
+    width: 100%;
+    margin: 0 auto;
+    position: fixed;
+    _position: absolute;
+    bottom: 0;
+    height: 32px;
+    _margin-top: -1px;
+    _top: expression(eval(document.compatMode &&document.compatMode=='CSS1Compat') ?documentElement.scrollTop+(documentElement.clientHeight-this.clientHeight): document.body.scrollTop +(document.body.clientHeight-this.clientHeight));
+}
+
+#uspace_fail_box {
+    z-index: 10257;
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    background: #ffbb5b;
+    border: 1px solid #eb8b01;
+    width: 300px;
+    margin: 0 auto;
+    height: 26px;
+    line-height: 26px;
+}
+
+#alert_fail_close {
+    cursor: pointer;
+    position: absolute;
+    left: 290px;
+    height: 16px;
+    width: 16px;
+    top: -12px;
+    background-image: url('../img/alertcancel.gif');
+}
+
+#uspace_success_box {
+    z-index: 10257;
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    background: #b3e465;
+    border: 1px solid #90c73a;
+    width: 300px;
+    margin: 0 auto;
+    height: 26px;
+    line-height: 26px;
+}
+
+#alert_success_close {
+    cursor: pointer;
+    position: absolute;
+    left: 290px;
+    height: 16px;
+    width: 16px;
+    top: -12px;
+    background-image: url('../img/alertsuccess.gif');
+}
+
+.red {
+    color: red;
+}
+
+.btn-disabled {
+    background-color: #999999;
+    ;
+    border-color: #666666;
+    color: #ffffff;
+}
+
+.user-menu {
+    cursor: pointer;
+}
