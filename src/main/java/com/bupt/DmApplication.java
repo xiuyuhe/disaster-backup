@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, SecurityAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class})
 public class DmApplication {
 
 	public static void main(String[] args) {
