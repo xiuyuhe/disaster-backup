@@ -205,13 +205,13 @@
         </aside>
         <!-- 右侧 -->
         <!-- Right side column. Contains the navbar and content of the page -->
-        <aside class="right-side">
+         <aside class="right-side">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <i class="fa fa-dashboard"></i>
                 <h1 style="display:inline;margin-left:1%;">
-                        站点列表
-                        <small>站点信息管理</small>
+                        人员列表
+                        <small>人员信息管理</small>
    
                     </h1>
             
@@ -222,39 +222,50 @@
                     <div class="col-xs-12">
                         <form action="" id="queryForm" class="form-horizontal">
                             <div class="form-group">
-                                <label for="taskname" class="lab">站点名称:</label>
+                                <label for="taskname" class="lab">姓名:</label>
                                 <div class="col-sm-2 inputWidth">
                                     <input type="text" class="form-control" id="taskname" name="taskname">
                                 </div>
-                                <label for="taskname" class="lab">建站时间:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <input type="text" class="form-control" id="taskname" name="taskname">
-                                </div>
-                                <label for="tasktype" class="lab">主管单位:</label>
+                                <label for="tasktype" class="lab">所属站点:</label>
                                 <div class="col-sm-2 inputWidth">
                                     <select name="tasktype" id="tasktype" class="form-control">
                                         <option value="0">省级平台考核</option>
                                         <option value="1">重点区域巡检</option>
                                     </select>
                                 </div>
-                                <label for="state" class="lab">所属区域:</label>
+                                <label for="tasktype" class="lab">职务:</label>
+                                <div class="col-sm-2 inputWidth">
+                                    <select name="tasktype" id="tasktype" class="form-control">
+                                        <option value="0">省级平台考核</option>
+                                        <option value="1">重点区域巡检</option>
+                                    </select>
+                                </div>
+                                <label for="state" class="lab">教育程度:</label>
                                 <div class="col-sm-2 inputWidth">
                                     <select name="state" id="state" class="form-control">
                                         <option value="0">执行中</option>
                                         <option value="1">已完成</option>
                                     </select>
                                 </div>
-                                 <label for="state" class="lab">状态:</label>
+                                <label for="tasktype" class="lab">职业背景:</label>
+                                <div class="col-sm-2 inputWidth">
+                                    <select name="tasktype" id="tasktype" class="form-control">
+                                        <option value="0">省级平台考核</option>
+                                        <option value="1">重点区域巡检</option>
+                                    </select>
+                                </div>
+                                <!--  <label for="state" class="lab ">状态:</label>
                                 <div class="col-sm-2 inputWidth">
                                     <select name="state" id="state" class="form-control">
                                         <option value="0">执行中</option>
                                         <option value="1">已完成</option>
                                     </select>
-                                </div>
+                                </div> -->
                                 
                                 <a href="#" id="queryBtn" class="btn btn-default btn-sm" style="display:inline;float:left;margin-left:-1%">查询</a>
                                 <a href="#" id="clearBtn" class="btn btn-default btn-sm" style="display:inline;float:left;margin-left:0.5%">清空</a>
-                            </div>
+                             </div>
+
                         </form>
                         <div class="box">
                             <div class="box-body table-responsive">
@@ -262,30 +273,32 @@
                                     <thead>
                                         <tr>
                                          <th><input type="checkbox" id="myCheckBox"/></th>
-                                             <th><a href="#">站点编号</a></th>
-                                             <th><a href="#">站点名称</a></th>
-                                             <th><a href="#">建站时间</a></th>
-                                            <th><a href="#">站长姓名</a></th>
-                                            <th><a href="#">人员数量</a></th>
-                                            <th><a href="#">物资数量</a></th>
-                                            <th><a href="#">车辆数量</a></th>
-                                            <th><a href="#">主管单位</a></th>
-                                            <th><a href="#">所属区域</a></th>
+                                             <th><a href="#">姓名</a></th>
+                                             <th><a href="#">手机号</a></th>
+                                             <th><a href="#">职务</a></th>
+                                            <th><a href="#">教育程度</a></th>
+                                            <th><a href="#">职业背景</a></th>
+                                            <th><a href="#">完成任务数量</a></th>
+                                            <th><a href="#">完成培训数量</a></th>
+                                            <th><a href="#">所属站点编号</a></th>
+                                            <th><a href="#">所属站点</a></th>
+                                             <th><a href="#">状态</a></th>
                                             <th><a href="#">操作</a></th>
                                      </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
               <th><input type="checkbox" id="myCheckBox"/></th>
+                <td>用户1</td>
+                <td>15011000000</td>
+                <td>站长</td>
+                <td>本科</td>
+                <td>军人</td>
+                <td>100</td>
+                <td>100</td>
                 <td>F001/01</td>
                 <td>方庄社区微型消防站</td>
-                <td>2016/7/15</td>
-                <td>用户1</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>地震局</td>
-                <td>北京市丰台区</td>
+                <td>有效</td>
                 <td>查看详情</td>
             </tr>
                                     </tbody>
@@ -317,13 +330,10 @@
         </ul>
 </nav>
     </div>
-    <div class="container" st
-    yle="padding-top: 100px">
+    <div class="container" style="padding-top: 100px">
         <div class="btn-group" role="group" aria-label="...">
     <button type="button" class="btn btn-default">批量导入</button>
     <button type="button" class="btn btn-default">批量导出</button>
-     <button type="button" class="btn btn-default">新增站点</button>
-    <button type="button" class="btn btn-default">删除站点</button>
  
 </div>
 </div>
