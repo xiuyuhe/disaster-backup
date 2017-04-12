@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>运维管理| 诊断任务管理</title>
+    <title>应急物资管理</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
     <link rel="shortcut icon" href="../favicon.ico">
@@ -74,7 +74,7 @@
         <a href="#" class="logo">
             <!-- <img src="../img/logo.png" class="img-circle" alt="User Image" / style="height:35px;width:35px;">
  -->
-            <span>运维管理</span>
+            <span>应急物资管理</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -119,35 +119,99 @@
                 <ul class="sidebar-menu">
                     <li class="treeview active">
                         <a href="#">
-                            <i class="fa fa-check-square-o"></i> <span>视频质量诊断</span>
+                            <i class="fa fa-check-square-o"></i> <span>站点管理</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="active"><a href="#"><i class="fa fa-angle-double-right"></i>&nbsp;诊断任务管理</a></li>
-                            <li><a href="./diTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;诊断任务统计</a></li>
-                            <li><a href="./diCameraReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;诊断汇总统计</a></li>
+                            <li class="active"><a href="#"><i class="fa fa-angle-double-right"></i>&nbsp;附近站点</a></li>
+                            <li><a href="./diTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;站点浏览</a></li>
+                            <li><a href="./diCameraReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增站点</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-credit-card"></i> <span>视频巡检管理</span>
+                            <i class="fa fa-credit-card"></i> <span>人员管理</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="./patrol.html"><i class="fa fa-angle-double-right"></i>&nbsp;巡检任务管理</a></li>
-                            <li><a href="./paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;巡检任务统计</a></li>
-                            <li><a href="./paMulReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;巡检汇总统计</a></li>
+                            <li><a href="./patrol.html"><i class="fa fa-angle-double-right"></i>&nbsp;人员浏览</a></li>
+                            <li><a href="./paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增人员</a></li>
+                            <li><a href="./paMulReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;签到记录</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-user"></i> <span>人员管理</span>
+                            <i class="fa fa-credit-card"></i> <span>物资管理</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="active"><a href="./user/viewUser.html"><i class="fa fa-angle-double-right"></i>&nbsp;人员浏览</a></li>
-                            <li><a href="./diTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增人员</a></li>
-                            <li><a href="./diCameraReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;签到记录</a></li>
+                            <li><a href="./patrolMatermal.html"><i class="fa fa-angle-double-right"></i>&nbsp;物资浏览</a></li>
+                            <li><a href="./paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;入库单</a></li>
+                            <li><a href="./paMulReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;出库单</a></li>
+                            <li><a href="./paMulReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;生成二维码</a></li>
+                        </ul>
+                    </li>
+                     <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-credit-card"></i> <span>设备管理</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="./patrol.html"><i class="fa fa-angle-double-right"></i>&nbsp;设备浏览</a></li>
+                            <li><a href="./paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增设备</a></li>
+                            <li><a href="./paMulReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;下发授权码</a></li>
+                        </ul>
+                    </li>
+                     <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-credit-card"></i> <span>任务管理</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="./patrol.html"><i class="fa fa-angle-double-right"></i>&nbsp;任务浏览</a></li>
+                            <li><a href="./paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增任务</a></li>
+                            <li><a href="./paMulReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;巡视隐患</a></li>
+                        </ul>
+                    </li>
+                     <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-credit-card"></i> <span>系统管理</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="./patrol.html"><i class="fa fa-angle-double-right"></i>&nbsp;物资种类参数</a></li>
+                            <li><a href="./paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;巡逻隐患种类参数</a></li>
+                            <li><a href="./paMulReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;基本信息</a></li>
+                        </ul>
+                    </li>
+                     <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-credit-card"></i> <span>机构管理</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="./patrol.html"><i class="fa fa-angle-double-right"></i>&nbsp;机构浏览</a></li>
+                            <li><a href="./paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增机构</a></li>
+                        </ul>
+                    </li>
+                        <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-credit-card"></i> <span>角色管理</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="./patrol.html"><i class="fa fa-angle-double-right"></i>&nbsp;角色浏览</a></li>
+                            <li><a href="./paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增角色</a></li>
+                        </ul>
+                    </li>
+                          <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-credit-card"></i> <span>权限资源管理</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="./patrol.html"><i class="fa fa-angle-double-right"></i>&nbsp;定义权限</a></li>
+                            <li><a href="./paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;定义资源</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -161,8 +225,13 @@
             <section class="content-header">
                 <i class="fa fa-dashboard"></i>
                 <h1 style="display:inline;margin-left:1%;">
-                        人员管理
+                        应急物资管理
+                        <small>应急物资管</small>
+   
                     </h1>
+                <a href="#" id="addUserBtn" class="btn btn-success" style="display:inline;padding:6px 15px;margin-left:1%;font-size:14px;" data-toggle="modal" data-target="#addModal">添加</a>
+                <a href="#" id="editUserBtn" class="btn btn-info" style="display:inline;padding:6px 15px;margin-left:1%;font-size:14px;">修改</a>
+                <a href="#" id="deleteUserBtn" class="btn btn-danger" style="padding:6px 15px;margin-left:1%;font-size:14px;">删除</a>
             </section>
             <!-- /.content -->
             <section class="content">
