@@ -55,6 +55,9 @@
     div#patrolTable_wrapper {
         overflow-x: auto;
     }
+    table th,td{
+        text-align: center;
+    }
     </style>
 </head>
 
@@ -203,7 +206,6 @@
             </section>
             <!-- /.sidebar -->
         </aside>
-        </aside>
         <!-- 右侧 -->
         <!-- Right side column. Contains the navbar and content of the page -->
          <aside class="right-side">
@@ -211,8 +213,8 @@
             <section class="content-header">
                 <i class="fa fa-dashboard"></i>
                 <h1 style="display:inline;margin-left:1%;">
-                        人员列表
-                        <small>人员信息管理</small>
+                        物资列表
+                        <small>物资信息管理</small>
    
                     </h1>
             
@@ -223,33 +225,37 @@
                     <div class="col-xs-12">
                         <form action="" id="queryForm" class="form-horizontal">
                             <div class="form-group">
-                                <label for="taskname" class="lab">姓名:</label>
+                                
+                                <label for="tasktype" class="lab">种类(中):</label>
+                                <div class="col-sm-2 inputWidth">
+                                    <select name="tasktype" id="tasktype" class="form-control">
+                                        <option value="0">省级平台考核</option>
+                                        <option value="1">重点区域巡检</option>
+                                    </select>
+                                </div>
+                                <label for="tasktype" class="lab">种类(小):</label>
+                                <div class="col-sm-2 inputWidth">
+                                    <select name="tasktype" id="tasktype" class="form-control">
+                                        <option value="0">省级平台考核</option>
+                                        <option value="1">重点区域巡检</option>
+                                    </select>
+                                </div>
+                                <label for="tasktype" class="lab">物资品名:</label>
+                                <div class="col-sm-2 inputWidth">
+                                    <select name="tasktype" id="tasktype" class="form-control">
+                                        <option value="0">省级平台考核</option>
+                                        <option value="1">重点区域巡检</option>
+                                    </select>
+                                </div>
+
+                                <label for="taskname" class="lab">固定保养周期:</label>
                                 <div class="col-sm-2 inputWidth">
                                     <input type="text" class="form-control" id="taskname" name="taskname">
                                 </div>
-                                <label for="tasktype" class="lab">所属站点:</label>
+                                 <label for="taskname" class="lab">报废年限/保质期:</label>
                                 <div class="col-sm-2 inputWidth">
-                                    <select name="tasktype" id="tasktype" class="form-control">
-                                        <option value="0">省级平台考核</option>
-                                        <option value="1">重点区域巡检</option>
-                                    </select>
+                                    <input type="text" class="form-control" id="taskname" name="taskname">
                                 </div>
-                                <label for="tasktype" class="lab">职务:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <select name="tasktype" id="tasktype" class="form-control">
-                                        <option value="0">省级平台考核</option>
-                                        <option value="1">重点区域巡检</option>
-                                    </select>
-                                </div>
-                                
-                                <!--  <label for="state" class="lab ">状态:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <select name="state" id="state" class="form-control">
-                                        <option value="0">执行中</option>
-                                        <option value="1">已完成</option>
-                                    </select>
-                                </div> -->
-                                
                         
                              </div>
 
@@ -258,21 +264,23 @@
                         <form action="" id="queryForm" class="form-horizontal">
                             <div class="form-group">
                                 
-                                <label for="state" class="lab">教育程度:</label>
+                               
+                                <label for="state" class="lab">设备状态:</label>
                                 <div class="col-sm-2 inputWidth">
                                     <select name="state" id="state" class="form-control">
                                         <option value="0">执行中</option>
                                         <option value="1">已完成</option>
                                     </select>
                                 </div>
-                                <label for="tasktype" class="lab">职业背景:</label>
+                                <label for="taskname" class="lab">生产日期:</label>
                                 <div class="col-sm-2 inputWidth">
-                                    <select name="tasktype" id="tasktype" class="form-control">
-                                        <option value="0">省级平台考核</option>
-                                        <option value="1">重点区域巡检</option>
-                                    </select>
+                                    <input type="text" class="form-control" id="taskname" name="taskname">
                                 </div>
-                                 <label for="state" class="lab ">状态:</label>
+                                 <label for="taskname" class="lab">上次保养日期:</label>
+                                <div class="col-sm-2 inputWidth">
+                                    <input type="text" class="form-control" id="taskname" name="taskname">
+                                </div>
+                                 <label for="state" class="lab">所属站点:</label>
                                 <div class="col-sm-2 inputWidth">
                                     <select name="state" id="state" class="form-control">
                                         <option value="0">执行中</option>
@@ -286,40 +294,50 @@
 
                         </form>
 
-
                         <div class="box">
                             <div class="box-body table-responsive">
-                                <table id="patrolTable" class="table table-bordered table-striped">
+                                <table id="patrolTable" class=" table-bordered table-striped">
                                     <thead>
                                         <tr>
                                          <th><input type="checkbox" id="myCheckBox"/></th>
-                                             <th><a href="#">姓名</a></th>
-                                             <th><a href="#">手机号</a></th>
-                                             <th><a href="#">职务</a></th>
-                                            <th><a href="#">教育程度</a></th>
-                                            <th><a href="#">职业背景</a></th>
-                                            <th><a href="#">完成任务数量</a></th>
-                                            <th><a href="#">完成培训数量</a></th>
+                                             <th><a href="#">物资编码</a></th>
+                                             <th><a href="#">种类(中类)</a></th>
+                                             <th><a href="#">种类(小类)</a></th>
+                                            <th><a href="#">品名</a></th>
+                                            <th><a href="#">规格</a></th>
+                                            <th><a href="#">数量</a></th>
+                                            <th><a href="#">生产日期</a></th>
+                                            <th><a href="#">固定保养周期</a></th>
+                                            <th><a href="#">保质期</a></th>
+                                             <th><a href="#">上次保养日期</a></th>
+                                            <th><a href="#">经办人</a></th>
                                             <th><a href="#">所属站点编号</a></th>
-                                            <th><a href="#">所属站点</a></th>
-                                             <th><a href="#">状态</a></th>
-                                            <th><a href="#">操作</a></th>
+                                            <th><a href="#">所属站点</a></th>          
+                                            <th><a href="#">物资来源</a></th>
+                                            <th><a href="#">上次盘点日期</a></th>
+                                            <th><a href="#">设备状态</a></th>
                                      </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-              <th><input type="checkbox" id="myCheckBox"/></th>
-                <td>用户1</td>
-                <td>15011000000</td>
-                <td>站长</td>
-                <td>本科</td>
-                <td>军人</td>
-                <td>100</td>
-                <td>100</td>
+              <th><input type="checkbox" id="myCheckBox"/></th>                                          
+                <td>F201-1</td>
+                <td>交通与岩土工程抢修</td>
+                <td>抗雪除冻作业</td>
+                <td>扫雪车</td>
+                <td>1包</td>
+                <td>10条 </td>
+                <td>2017/06/01</td>
+                <td>2年</td>
+                <td>2年</td>
+                <td>2017/06/01</td>
+                <td>某某</td>
                 <td>F001/01</td>
                 <td>方庄社区微型消防站</td>
+                <td>某供应商</td>
+                <td>2017/06/01</td>
                 <td>有效</td>
-                <td>查看详情</td>
+
             </tr>
                                     </tbody>
                                 </table>
