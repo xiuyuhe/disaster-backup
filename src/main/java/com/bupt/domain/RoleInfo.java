@@ -1,6 +1,7 @@
 package com.bupt.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by hexiuyu on 2017/4/13.

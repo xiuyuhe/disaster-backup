@@ -23,6 +23,19 @@ public class UserInfo  {
     private String status;
     private String siteInfoId;
 
+
+    private RoleInfo roleInfo;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "roleId")
+    public RoleInfo getRoleInfo() {
+        return roleInfo;
+    }
+
+    public void setRoleInfo(RoleInfo roleInfo) {
+        this.roleInfo = roleInfo;
+    }
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
@@ -107,4 +120,6 @@ public class UserInfo  {
     public void setSiteInfoId(String siteInfoId) {
         this.siteInfoId = siteInfoId;
     }
+
+
 }

@@ -9,4 +9,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  */
 @RepositoryRestResource()
 public interface UserInfoRepository extends JpaRepository<UserInfo, String> {
+    UserInfo findByUserName(String name);
 }

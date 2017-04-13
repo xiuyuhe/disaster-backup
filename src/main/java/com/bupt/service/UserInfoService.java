@@ -21,4 +21,8 @@ public class UserInfoService {
     public void findOne(String id){
         userInfoRepository.findOne(id);
     }
+
+    public UserInfo findByName(String name){
+        return userInfoRepository.findByUserName(name);
+    }
 }
