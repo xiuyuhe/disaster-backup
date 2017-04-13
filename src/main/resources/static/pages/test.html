@@ -12,11 +12,13 @@
     <script src="../js/bootstrap-treeview.js"></script>
 </head>
 <body>
-<div id="tree">
-
-
-</div>
+<div id="tree"></div>
 <div id="hxy"></div>
+
+
+<!--test ajax-->
+<button id="testBtn" class="btn btn-default"> test</button>
+
 </body>
 
 <!--art - template  demo-->
@@ -87,6 +89,13 @@
 </script>
 <!--tree demo-->
 
-
-
+<!--test-ajax-->
+<script>
+    $('#testBtn').on('click',function () {
+        $.get('http://localhost:8080/demo',function (data) {
+            alert(data);
+        })
+    })
+</script>
+<!--test-ajax-->
 </html>
