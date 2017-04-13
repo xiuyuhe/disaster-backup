@@ -1,13 +1,17 @@
 package com.bupt.repository;
 
-import com.bupt.domain.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import com.bupt.domain.SiteInfo;
+
 /**
- * Created by bupt626 on 17-4-12.
+ * 
+ * @author yaosiyu
+ *
  */
+
 @RepositoryRestResource()
-public interface UserInfoRepository extends JpaRepository<UserInfo, String> {
-    UserInfo findByUserName(String name);
+public interface SiteInfoRepository extends JpaRepository<SiteInfo, String> {
+
 }
