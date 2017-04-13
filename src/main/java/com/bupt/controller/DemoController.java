@@ -22,7 +22,6 @@ public class DemoController {
 
     @RequestMapping("")
     public @ResponseBody String demoPage(){
-        UserDetails currentUser = CommonUtil.getCurrentUser();
         return "demo";
     }
 

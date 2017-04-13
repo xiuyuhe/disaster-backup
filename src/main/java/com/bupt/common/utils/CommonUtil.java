@@ -9,6 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class CommonUtil {
 
     public static UserDetails getCurrentUser() {
-        return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }
