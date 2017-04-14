@@ -188,12 +188,12 @@
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         </li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#" aria-label="Next">
+                                        <li class="active"><a href="javascript:void(0);">1</a></li>
+                                        <li><a href="javascript:void(0);">2</a></li>
+                                        <li><a href="javascript:void(0);">3</a></li>
+                                        <li><a href="javascript:void(0);">4</a></li>
+                                        <li><a href="javascript:void(0);">5</a></li>
+                                        <li><a href="javascript:void(0);" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                         </li>
@@ -358,16 +358,16 @@
             <tr>
                 <th><input type="checkbox" id="myCheckBox"/></th>
                 <td>{{item.name}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.name}}</td>
+                <td>{{item.mobilePhone}}</td>
+                <td>{{item.position}}</td>
+                <td>{{item.educational}}</td>
+                <td>{{item.professional}}</td>
+                <td>100</td>
+                <td>100</td>
+                <td>100</td>
+                <td>Null</td>
+                <td>{{item.status}}</td>
+                <td>查看详情</td>
             </tr>
         {{/each}}
         </tbody>
@@ -375,67 +375,30 @@
 </script>
 
 <script>
-    var json  = {
-        "data":{
-            "results":[
-                {
-                    "id":"123123",
-                    "userName":"123456",
-                    "password":"$2a$10$4yHXKpJMSWwc4DvZKI/b9eBlMJLJrydYQD0/S65B1Lhx2CrgjPbYS",
-                    "name":"hexiuyu",
-                    "status":"1",
-                    "roleInfo":{
-                        "id":"1",
-                        "roleName":"ROLE_ADMIN"
-                    }
-                },
-                {
-                    "id":"123456",
-                    "userName":"1",
-                    "password":"$2a$10$4yHXKpJMSWwc4DvZKI/b9eBlMJLJrydYQD0/S65B1Lhx2CrgjPbYS",
-                    "name":"hehe",
-                    "roleInfo":{
-                        "id":"2",
-                        "roleName":"ROLE_MEMBER"
-                    }
-                },
-                {
-                    "id":"858585ef5b65c17f015b65c27ad70000",
-                    "userName":"1325656",
-                    "password":"$2a$10$4yHXKpJMSWwc4DvZKI/b9eBlMJLJrydYQD0/S65B1Lhx2CrgjPbYS",
-                    "name":"ycliu",
-                    "status":"1",
-                    "roleInfo":{
-                        "id":"1",
-                        "roleName":"ROLE_ADMIN"
-                    }
-                },
-                {
-                    "id":"858585f55b65dd59015b65e548190000",
-                    "userName":"1325652",
-                    "password":"$2a$10$4yHXKpJMSWwc4DvZKI/b9eBlMJLJrydYQD0/S65B1Lhx2CrgjPbYS",
-                    "name":"ycliu",
-                    "status":"0",
-                    "roleInfo":{
-                        "id":"1",
-                        "roleName":"ROLE_ADMIN"
-                    }
-                }
-            ],
-            "totalResults":4,
-            "totalPages":1,
-            "start":0,
-            "pageSize":10,
-            "currentPageLength":4,
-            "currentPage":0
-        },
-        "message":"SUCCESS",
-        "status":"true"
-    }
 
-    var trueData = json.data;
-    var html = template('tpl-userTable', trueData);
-    $('#userTable').html(html);
+    var getUser = function () {
+        $.ajax({
+            url:"http://localhost:8080/userInfo/page",
+            method: 'GET',
+            dataType: 'json',
+        }).done(function (json) {
+            if(json.status != "true"){
+                alert("something wrong");
+                return ;
+            }
+            var trueData = json.data;
+            var html = template('tpl-userTable', trueData);
+            $('#userTable').html(html);
+        }).fail(function () {
+            alert("something wrong");
+        });
+    };
+
+    $(function () {
+        getUser();
+    })
+
+
 
 
 </script>
