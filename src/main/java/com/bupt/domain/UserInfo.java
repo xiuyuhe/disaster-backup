@@ -121,5 +121,22 @@ public class UserInfo  {
         this.siteInfoId = siteInfoId;
     }
 
+    public UserInfo() {
+    }
+
+    public UserInfo(UserInfo userInfo) {
+        this.id = userInfo.getId();
+        this.userName = userInfo.getUserName();
+        this.password = userInfo.getPassword();
+        this.name = userInfo.getName();
+        this.mobilePhone = userInfo.getMobilePhone();
+        this.position = userInfo.getPosition();
+        this.educational = userInfo.getEducational();
+        this.professional = userInfo.getProfessional();
+        this.status = userInfo.getStatus();
+        this.siteInfoId = userInfo.getSiteInfoId();
+        this.roleInfo = userInfo.getRoleInfo();
+    }
+
 
 }
