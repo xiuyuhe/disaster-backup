@@ -2,6 +2,7 @@ package com.bupt.controller;
 
 import com.bupt.common.base.BaseCommonController;
 import com.bupt.common.base.BaseController;
+import com.bupt.common.base.Constants;
 import com.bupt.common.base.PageEntity;
 import com.bupt.domain.EquipmentInfo;
 import com.bupt.domain.UserInfo;
@@ -19,7 +20,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/equipmentInfo")
-public class EquipmentInfoController extends BaseController{
+public class EquipmentInfoController extends BaseCommonController{
 
     @Autowired
     private EquipmentInfoService equipmentInfooService;
@@ -31,20 +32,21 @@ public class EquipmentInfoController extends BaseController{
     }
 
     @RequestMapping("/page")
-    public String page(UserInfo userInfo){
-        PageEntity<UserInfo> pageEntity = new PageEntity<>(start,pageSize);
+    public String page(EquipmentInfo entity,Integer start){
+        start = start != null?start:Constants.INT_ZERO;
+        PageEntity<EquipmentInfo> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
         Map<String,Object> parameterMap = new HashMap<>();
-        equipmentInfooService.pageByHql(pageEntity,buildParameter(userInfo));
+        equipmentInfooService.pageByHql(pageEntity,buildParameter(entity));
         return sendSuccessMessage(pageEntity);
     }
 
-    private Map<String,Object> buildParameter(UserInfo userInfo){
+    private Map<String,Object> buildParameter(EquipmentInfo entity){
         Map<String,Object> parameterMap = new HashMap<>();
-        if (StringUtils.isNotBlank(userInfo.getName())){
-            parameterMap.put("name", "%"+userInfo.getName()+"%");
+        if (StringUtils.isNotBlank(entity.getType())){
+            parameterMap.put("name", entity.getType());
         }
-        if (StringUtils.isNotBlank(userInfo.getStatus())){
-            parameterMap.put("status", userInfo.getStatus());
+        if (StringUtils.isNotBlank(entity.getStatus())){
+            parameterMap.put("status", entity.getStatus());
         }
         return parameterMap;
     }
