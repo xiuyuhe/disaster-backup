@@ -2,6 +2,7 @@ package com.bupt.controller;
 
 import com.bupt.common.base.BaseCommonController;
 import com.bupt.common.base.BaseController;
+import com.bupt.common.base.Constants;
 import com.bupt.common.base.PageEntity;
 import com.bupt.domain.UserInfo;
 import com.bupt.service.UserInfoService;
@@ -19,7 +20,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/userInfo")
-public class UserInfoController extends BaseController {
+public class UserInfoController extends BaseCommonController {
 
     @Autowired
     private UserInfoService userInfoService;
@@ -35,9 +36,9 @@ public class UserInfoController extends BaseController {
         return sendSuccessMessage(userInfo);
     }
     @RequestMapping(value = "/page",method = { RequestMethod.POST, RequestMethod.HEAD })
-    public String page(UserInfo userInfo){
-        PageEntity<UserInfo> pageEntity = new PageEntity<>(start,pageSize);
-        Map<String,Object> parameterMap = new HashMap<>();
+    public String page(UserInfo userInfo,Integer start){
+        start = start != null?start: Constants.INT_ZERO;
+        PageEntity<UserInfo> pageEntity = new PageEntity<>(start,Constants.PAGE_SIZE);
         userInfoService.pageByHql(pageEntity,buildParameter(userInfo));
         return sendSuccessMessage(pageEntity);
     }
