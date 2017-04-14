@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 
 @SuppressWarnings("unchecked")
 @Repository(value="simpleHibernateDaoImpl")
-public class BasePageRepository<T,PK extends Serializable>  {
+public class BasePageService<T,PK extends Serializable>  {
 
    private static final Pattern FROM_PATTERN  = Pattern.compile("[Ff][Rr][Oo][Mm]");
    private static final String  ORDER_PATTERN = "^(.*)[Oo][Rr][Dd][Ee][Rr]\\s*?[Bb][Yy](.*)$";
@@ -39,7 +39,7 @@ public class BasePageRepository<T,PK extends Serializable>  {
     * SimpleHibernateDao<User, Long> userDao = new SimpleHibernateDao<User,
     * Long>(sessionFactory, User.class);
     */
-   public BasePageRepository() {
+   public BasePageService() {
        this.entityClass = ReflectUtils.getSuperClassGenricType(getClass());
    }
 
@@ -350,8 +350,11 @@ s    * @return
            Number count = (Number) countQuery.getSingleResult();
            page.setTotalResults(count == null ? 0 : count.longValue());
        }
-
-       query.setFirstResult(page.getStart());
+       if (page.getCurrentPage() > 1){
+           query.setFirstResult((page.getCurrentPage() - 1) * page.getPageSize());
+       }else {
+           query.setFirstResult(page.getStart());
+       }
        query.setMaxResults(page.getPageSize());
 
        List<X> results = query.getResultList();

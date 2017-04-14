@@ -1,12 +1,14 @@
 package com.bupt.controller;
 
 import com.bupt.common.base.BaseCommonController;
+import com.bupt.common.base.BaseController;
 import com.bupt.common.base.PageEntity;
 import com.bupt.domain.UserInfo;
 import com.bupt.service.UserInfoService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -17,7 +19,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/userInfo")
-public class UserInfoController extends BaseCommonController{
+public class UserInfoController extends BaseController {
 
     @Autowired
     private UserInfoService userInfoService;
@@ -32,14 +34,22 @@ public class UserInfoController extends BaseCommonController{
         UserInfo userInfo = userInfoService.findByName(userName);
         return sendSuccessMessage(userInfo);
     }
-    @RequestMapping("/page")
+    @RequestMapping(value = "/page",method = { RequestMethod.POST, RequestMethod.HEAD })
     public String page(UserInfo userInfo){
-        PageEntity<UserInfo> pageEntity = new PageEntity<>(0,10);
-        Map<String,Object> paramMap = new HashMap<>();
-        if (!StringUtils.isEmpty(userInfo.getName())){
-            paramMap.put("name", "%"+userInfo.getName()+"%");
-        }
-        userInfoService.pageByHql(pageEntity,paramMap);
+        PageEntity<UserInfo> pageEntity = new PageEntity<>(start,pageSize);
+        Map<String,Object> parameterMap = new HashMap<>();
+        userInfoService.pageByHql(pageEntity,buildParameter(userInfo));
         return sendSuccessMessage(pageEntity);
+    }
+
+    private Map<String,Object> buildParameter(UserInfo userInfo){
+        Map<String,Object> parameterMap = new HashMap<>();
+        if (StringUtils.isNotBlank(userInfo.getName())){
+            parameterMap.put("name", "%"+userInfo.getName()+"%");
+        }
+        if (StringUtils.isNotBlank(userInfo.getStatus())){
+            parameterMap.put("status", userInfo.getStatus());
+        }
+        return parameterMap;
     }
 }
