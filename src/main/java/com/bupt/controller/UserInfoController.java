@@ -37,7 +37,7 @@ public class UserInfoController extends BaseCommonController{
         PageEntity<UserInfo> pageEntity = new PageEntity<>(0,10);
         Map<String,Object> paramMap = new HashMap<>();
         if (!StringUtils.isEmpty(userInfo.getName())){
-            paramMap.put("name", userInfo.getName());
+            paramMap.put("name", "%"+userInfo.getName()+"%");
         }
         userInfoService.pageByHql(pageEntity,paramMap);
         return sendSuccessMessage(pageEntity);
