@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>应急物资管理</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- bootstrap 3.0.2 -->
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- font Awesome -->
+    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="../css/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../css/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../css/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.validate.js" type="text/javascript"></script>
+    <script src="../js/jquery.easyui.min.js" type="text/javascript"></script>
+      <script src="../js/bootstrap-treeview.js"></script>
+    <script src="../js/template.js"></script>
+    <style type="text/css">
+    body {
+        font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    }
+    
+    a.logo {
+        font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    }
+    
+    div#userTable_wrapper {
+        overflow-x: auto;
+    }
+    
+    label.lab {
+        padding: 6px 0;
+        text-align: center;
+        width: 6%;
+        float: left;
+    }
+    
+    .inputWidth {
+        width: 12%!important;
+    }
+    
+    .tree-folder-open:before {
+        content: "\f115" !important;
+    }
+    
+    .fa {
+        background: none;
+        padding-top: 3px !important;
+    }
+    
+    div#patrolTable_wrapper {
+        overflow-x: auto;
+    }
+    </style>
+</head>
+
+<body class="skin-blue">
+    <header class="header">
+        <a href="#" class="logo">
+            <!-- <img src="../img/logo.png" class="img-circle" alt="User Image" / style="height:35px;width:35px;">
+ -->
+            <span>应急物资管理</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="user user-menu">
+                        <a>
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span>注销</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- Left side column. contains the logo and sidebar -->
+        <div id='sidebar'></div>
+        <!-- 右侧 -->
+        <!-- Right side column. Contains the navbar and content of the page -->
+         <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <i class="fa fa-dashboard"></i>
+                <h1 style="display:inline;margin-left:1%;">
+                      机构列表
+                        <small>机构信息管理</small>
+   
+                    </h1>
+            
+            </section>
+            <!-- /.content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-body table-responsive">
+                                <table id="patrolTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>                                                 
+                                            <th><a href="#">机构名称</a></th>
+                                             <th><a href="#">机构状态</a></th>
+                                             <th><a href="#">创建时间</a></th>
+                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                  <td id="tree"></td>
+                    <td></td>
+                    <td></td>	 		
+
+            </tr>
+        </tbody>
+    </table>
+
+        <script>
+    var tree = [
+        {
+            text: "中华人民共和国",
+            nodes: [
+                {
+                    text: "北京市政府",
+                    nodes: [
+                        {
+                            text: "朝阳区政府",
+                            nodes:[
+                            {text: "朝外街道办事处"},
+                            {text: "安贞街道办事处" },
+                            {text: "八里庄街道办事处"},
+                            {text: "大屯街道办事处"},
+                            {text: "垡头街道办事处"},
+                            {text: "和平街街道办事处"},
+                            {text: "呼家楼街道办事处"},
+                            {text: " 机场街道办事处"},
+                            {text: "建外街道办事处"},
+                            {text: "劲松街道办事处"},
+                            {text: " 酒仙桥街道办事处"},
+                            {text: "六里屯街道办事处"},
+                            {text: "麦子店街道办事处"},
+                            {text: "潘家园街道办事处"},
+                            {text: "三里屯街道办事处"},
+                            {text: "双井街道办事处"},
+                            {text: " 团结湖街道办事处"},
+                            {text: "望京街道办事处"},
+                            {text: "东湖街道办事处"},
+                            {text: "香河园街道办事处"},
+                            {text: "小关街道办事处"},
+                            {text: " 亚运村街道办事处"},
+                            {text: "左家庄街道办事处"},
+                            {text: "奥运村街道办事处"},
+                            {text: "常营地区办事处"},
+                            {text: "崔各庄地区办事处"},
+                            {text: "东坝地区办事处"},
+                            {text: "东风地区办事处"},
+                           {text: "豆各庄地区办事处"},
+                            {text: "高碑店地区办事处"},
+                            {text: "管庄地区办事处"},
+                            {text: "黑庄户地区办事处"},
+                            {text: "将台地区办事处"},
+                            {text: "金盏地区办事处"},
+                            {text: "来广营地区办事处"},
+                            {text: "南磨房地区办事处 "},
+                            {text: "平房地区办事处"},
+                            {text: " 三间房地区办事处"},
+                            {text: "十八里店地区办事处"},
+                            {text: " 孙河地区办事处 "},
+                            {text: "太阳宫地区办事处 "},
+                            {text: "王四营地区办事处"},
+
+                                 ]
+                        }   
+                             ]
+                 }        
+            ]
+}
+        ]
+
+    function getTree() {
+        // Some logic to retrieve, or generate tree structure
+        return tree;
+    }
+
+    $('#tree').treeview({
+        data: getTree(),         // data is not optional
+    });
+</script>
+
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+    </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+            </section>
+        </aside>
+        <!-- /.right-side -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- Modal -->
+    <!--添加省级平台考核-->
+    <div class="modal fade" id="addProvince" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" data-backdrop="static">
+        <div class="modal-dialog" style="width:600px;" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新建任务-省级平台考核</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="addProvinceForm" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="taskname">任务名称</label>
+                                <input type="text" class="form-control" id="taskname" name="taskname">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="patroltype">巡检方式</label>
+                                <select name="patroltype" id="patroltype" class="form-control">
+                                    <option value="0">轮询</option>
+                                    <option value="1">全检</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="tasktype">任务类型</label>
+                                <input type="text" class="form-control" id="tasktype" name="tasktype">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="number">抽检数量</label>
+                                <input type="text" class="form-control" id="number" name="number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="totalRound">总轮次</labe
+                                <select name="totalRound" id="totalRound" class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="qualitydiagnose">质量诊断</label>
+                                <select name="qualitydiagnose" id="qualitydiagnose" class="form-control">
+                                    <option value="0">不启动</option>
+                                    <option value="1">启动</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+  
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--添加重点区域-->
+    <div class="modal fade" id="addRegion" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" data-backdrop="static">
+        <div class="modal-dialog" style="width:600px;" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新建任务-重点区域巡检</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" data-backdrop="static">
+        <div class="modal-dialog" style="width:800px;" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">修改</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+        </div>
+        <script src="../js/util.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../js/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../js/datatables/dataTables.bootstrap.min.js" type="text/javascript">
+        </script>
+        <script src="../js/My97DatePicker/WdatePicker.js" type="text/javascript">
+        </script>
+        <script src="../js/AdminLTE/app.js " type="text/javascript "></script>
+        <script src="../js/index/patrol.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.get("http://localhost:8080/pages/sidebar.html",function (data) {
+                var render = template.compile(data);
+                var args = {
+                    usesName: 'Jack',
+                    currentPage: 'orgManage'
+                }
+                var html = render(args);
+                $('#sidebar').html(html);
+            })
+        })
+    </script>
+</body>
+
+</html>
+

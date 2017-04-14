@@ -7,462 +7,368 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
     <link rel="shortcut icon" href="../favicon.ico">
-    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- font Awesome -->
-    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- Theme style -->
-    <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link href="../css/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="../css/icon.css" rel="stylesheet" type="text/css" />
-    <link href="../css/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/icon.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/easyui.css" rel="stylesheet" type="text/css"/>
     <script src="../js/jquery.min.js" type="text/javascript"></script>
     <script src="../js/jquery.validate.js" type="text/javascript"></script>
     <script src="../js/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../js/template.js"></script>
     <style type="text/css">
-    body {
-        font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-    }
-    
-    a.logo {
-        font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-    }
-    
-    div#userTable_wrapper {
-        overflow-x: auto;
-    }
-    
-    label.lab {
-        padding: 6px 0;
-        text-align: center;
-        width: 6%;
-        float: left;
-    }
-    
-    .inputWidth {
-        width: 12%!important;
-    }
-    
-    .tree-folder-open:before {
-        content: "\f115" !important;
-    }
-    
-    .fa {
-        background: none;
-        padding-top: 3px !important;
-    }
-    
-    div#patrolTable_wrapper {
-        overflow-x: auto;
-    }
+        body {
+            font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+        }
+
+        a.logo {
+            font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+        }
+
+        div#userTable_wrapper {
+            overflow-x: auto;
+        }
+
+        label.lab {
+            padding: 6px 0;
+            text-align: center;
+            width: 6%;
+            float: left;
+        }
+
+        .inputWidth {
+            width: 12% !important;
+        }
+
+        .tree-folder-open:before {
+            content: "\f115" !important;
+        }
+
+        .fa {
+            background: none;
+            padding-top: 3px !important;
+        }
+
+        div#patrolTable_wrapper {
+            overflow-x: auto;
+        }
     </style>
 </head>
 
 <body class="skin-blue">
-    <header class="header">
-        <a href="#" class="logo">
-            <!-- <img src="../img/logo.png" class="img-circle" alt="User Image" / style="height:35px;width:35px;">
- -->
-            <span>应急物资管理</span>
-        </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
-            <div class="navbar-right">
-                <ul class="nav navbar-nav">
-                    <!-- User Account: style can be found in dropdown.less -->
-                    <li class="user user-menu">
-                        <a>
-                            <i class="glyphicon glyphicon-user"></i>
-                            <span>注销</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <div class="wrapper row-offcanvas row-offcanvas-left">
-        <!-- Left side column. contains the logo and sidebar -->
-          <aside class="left-side sidebar-offcanvas">
-            <!-- sidebar: style can be found in sidebar.less -->
-            <!-- 左侧导航 -->
-            <section class="sidebar">
-                <!-- Sidebar user panel -->
-                <!-- 左侧上方用户 -->
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <i style="color:white;margin-top:10%;" class="fa fa-user fa-3x"></i>
-                    </div>
-                    <div class="pull-left info">
-                        <p id="name-pull-left">Hello, Jane</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
-                    </div>
-                </div>
-                <!-- 左侧下方导航 -->
-                <ul class="sidebar-menu">
-                    <li class="treeview active">
-                        <a href="#">
-                            <i class="fa fa-check-square-o"></i> <span>站点管理</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li class="active"><a href="#"><i class="fa fa-angle-double-right"></i>&nbsp;附近站点</a></li>
-                            <li><a href="./diTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;站点浏览</a></li>
-                            <li><a href="./diCameraReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增站点</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-credit-card"></i> <span>人员管理</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="./patrol.html"><i class="fa fa-angle-double-right"></i>&nbsp;人员浏览</a></li>
-                            <li><a href="./paTaskReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增人员</a></li>
-                            <li><a href="./paMulReport.html"><i class="fa fa-angle-double-right"></i>&nbsp;签到记录</a></li>
-                        </ul>
-                    </li>
-                     <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-credit-card"></i> <span>物资管理</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="./patrolMatermal1.html"><i class="fa fa-angle-double-right"></i>&nbsp;物资浏览</a></li>
-                            <li><a href="./paTaskReportIinre.html"><i class="fa fa-angle-double-right"></i>&nbsp;入库单</a></li>
-                            <li><a href="./paTaskReportIoutre.html"><i class="fa fa-angle-double-right"></i>&nbsp;出库单</a></li>
-                            <li><a href="./twoDimensionCode.html"><i class="fa fa-angle-double-right"></i>&nbsp;生成二维码</a></li>
-                        </ul>
-                    </li>
-                     <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-credit-card"></i> <span>设备管理</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="./deviceList.html"><i class="fa fa-angle-double-right"></i>&nbsp;设备浏览</a></li>
-                            <li><a href="./addDevice.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增设备</a></li>
-                            <li><a href="./authorizationCode.html"><i class="fa fa-angle-double-right"></i>&nbsp;下发授权码</a></li>
-                        </ul>
-                    </li>
-                     <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-credit-card"></i> <span>任务管理</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="./taskManagement.html"><i class="fa fa-angle-double-right"></i>&nbsp;任务浏览</a></li>
-                            <li><a href="./addTask.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增任务</a></li>
-                            <li><a href="./patrolHiddenDanger.html"><i class="fa fa-angle-double-right"></i>&nbsp;巡视隐患</a></li>
-                        </ul>
-                    </li>
-                     <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-credit-card"></i> <span>系统管理</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="./listOfMaterials.html"><i class="fa fa-angle-double-right"></i>&nbsp;物资种类参数</a></li>
-                            <li><a href="./patrolHiddenList.html"><i class="fa fa-angle-double-right"></i>&nbsp;巡逻隐患种类参数</a></li>
-                            <li><a href="./baseInformation.html"><i class="fa fa-angle-double-right"></i>&nbsp;基本信息</a></li>
-                        </ul>
-                    </li>
-                     <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-credit-card"></i> <span>机构管理</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="./mechanismBrowsing.html"><i class="fa fa-angle-double-right"></i>&nbsp;机构浏览</a></li>
-                            <li><a href="./addMechanism.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增机构</a></li>
-                        </ul>
-                    </li>
-                        <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-credit-card"></i> <span>角色管理</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="./roleBrowsing.html"><i class="fa fa-angle-double-right"></i>&nbsp;角色浏览</a></li>
-                            <li><a href="./addRole.html"><i class="fa fa-angle-double-right"></i>&nbsp;新增角色</a></li>
-                        </ul>
-                    </li>
-                          <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-credit-card"></i> <span>权限资源管理</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="./definePermissions.html"><i class="fa fa-angle-double-right"></i>&nbsp;定义权限</a></li>
-                            <li><a href="./resourceList.html"><i class="fa fa-angle-double-right"></i>&nbsp;定义资源</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-            <!-- /.sidebar -->
-        </aside>
-            </section>
-            <!-- /.sidebar -->
-        </aside>
-        </aside>
-        <!-- 右侧 -->
-        <!-- Right side column. Contains the navbar and content of the page -->
-         <aside class="right-side">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <i class="fa fa-dashboard"></i>
-                <h1 style="display:inline;margin-left:1%;">
-                        人员列表
-                        <small>人员信息管理</small>
-   
-                    </h1>
-            
-            </section>
-            <!-- /.content -->
-            <section class="content">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <form action="" id="queryForm" class="form-horizontal">
-                            <div class="form-group">
-                                <label for="taskname" class="lab">姓名:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <input type="text" class="form-control" id="taskname" name="taskname">
-                                </div>
-                                <label for="tasktype" class="lab">所属站点:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <select name="tasktype" id="tasktype" class="form-control">
-                                        <option value="0">省级平台考核</option>
-                                        <option value="1">重点区域巡检</option>
-                                    </select>
-                                </div>
-                                <label for="tasktype" class="lab">职务:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <select name="tasktype" id="tasktype" class="form-control">
-                                        <option value="0">省级平台考核</option>
-                                        <option value="1">重点区域巡检</option>
-                                    </select>
-                                </div>
-                                
-                                <!--  <label for="state" class="lab ">状态:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <select name="state" id="state" class="form-control">
-                                        <option value="0">执行中</option>
-                                        <option value="1">已完成</option>
-                                    </select>
-                                </div> -->
-                                
-                        
-                             </div>
+<header class="header">
+    <a href="#" class="logo">
+        <!-- <img src="../img/logo.png" class="img-circle" alt="User Image" / style="height:35px;width:35px;">
+-->
+        <span>应急物资管理</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <div class="navbar-right">
+            <ul class="nav navbar-nav">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="user user-menu">
+                    <a>
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span>注销</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="wrapper row-offcanvas row-offcanvas-left">
+    <!-- Left side column. contains the logo and sidebar -->
+    <div id='sidebar'></div>
+    <!-- 右侧 -->
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <i class="fa fa-dashboard"></i>
+            <h1 style="display:inline;margin-left:1%;">
+                人员列表
+                <small>人员信息管理</small>
 
-                        </form>
+            </h1>
 
-                        <form action="" id="queryForm" class="form-horizontal">
-                            <div class="form-group">
-                                
-                                <label for="state" class="lab">教育程度:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <select name="state" id="state" class="form-control">
-                                        <option value="0">执行中</option>
-                                        <option value="1">已完成</option>
-                                    </select>
-                                </div>
-                                <label for="tasktype" class="lab">职业背景:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <select name="tasktype" id="tasktype" class="form-control">
-                                        <option value="0">省级平台考核</option>
-                                        <option value="1">重点区域巡检</option>
-                                    </select>
-                                </div>
-                                 <label for="state" class="lab ">状态:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <select name="state" id="state" class="form-control">
-                                        <option value="0">执行中</option>
-                                        <option value="1">已完成</option>
-                                    </select>
-                                </div>
-                                
-                                <a href="#" id="queryBtn" class="btn btn-default btn-sm" style="display:inline;float:left;margin-left:-1%">查询</a>
-                                <a href="#" id="clearBtn" class="btn btn-default btn-sm" style="display:inline;float:left;margin-left:0.5%">清空</a>
-                             </div>
-
-                        </form>
-
-
-                        <div class="box">
-                            <div class="box-body table-responsive">
-                                <table id="patrolTable" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                         <th><input type="checkbox" id="myCheckBox"/></th>
-                                             <th><a href="#">姓名</a></th>
-                                             <th><a href="#">手机号</a></th>
-                                             <th><a href="#">职务</a></th>
-                                            <th><a href="#">教育程度</a></th>
-                                            <th><a href="#">职业背景</a></th>
-                                            <th><a href="#">完成任务数量</a></th>
-                                            <th><a href="#">完成培训数量</a></th>
-                                            <th><a href="#">所属站点编号</a></th>
-                                            <th><a href="#">所属站点</a></th>
-                                             <th><a href="#">状态</a></th>
-                                            <th><a href="#">操作</a></th>
-                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-              <th><input type="checkbox" id="myCheckBox"/></th>
-                <td>用户1</td>
-                <td>15011000000</td>
-                <td>站长</td>
-                <td>本科</td>
-                <td>军人</td>
-                <td>100</td>
-                <td>100</td>
-                <td>F001/01</td>
-                <td>方庄社区微型消防站</td>
-                <td>有效</td>
-                <td>查看详情</td>
-            </tr>
-                                    </tbody>
-                                </table>
-
-
-<div class="input-group pull-right" style="padding-top: 10px">
-  <span class="input-group-addon" id="basic-addon1">每页记录数</span>
-  <input type="text" class="form-control" placeholder="number" aria-describedby="basic-addon1">
-</div>
-
-    <div class="pull-right">
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-             <li>
-                 <a href="#" aria-label="Previous">
-                 <span aria-hidden="true">&laquo;</span>
-                </a>
-             </li>
-            <li  class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-             <li><a href="#">5</a></li>
-             <li><a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                </a>
-             </li>
-        </ul>
-</nav>
-    </div>
-    <div class="container" style="padding-top: 100px">
-        <div class="btn-group" role="group" aria-label="...">
-    <button type="button" class="btn btn-default">批量导入</button>
-    <button type="button" class="btn btn-default">批量导出</button>
- 
-</div>
-</div>
-
-    </div>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /.box -->
-                    </div>
-                </div>
-            </section>
-        </aside>
-        <!-- /.right-side -->
-    </div>
-    <!-- ./wrapper -->
-    <!-- Modal -->
-    <!--添加省级平台考核-->
-    <div class="modal fade" id="addProvince" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" data-backdrop="static">
-        <div class="modal-dialog" style="width:600px;" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">新建任务-省级平台考核</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="addProvinceForm" class="form-horizontal">
+        </section>
+        <!-- /.content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <form action="" id="queryForm" class="form-horizontal">
                         <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="taskname">任务名称</label>
+                            <label for="taskname" class="lab">姓名:</label>
+                            <div class="col-sm-2 inputWidth">
                                 <input type="text" class="form-control" id="taskname" name="taskname">
                             </div>
-                            <div class="col-md-6">
-                                <label for="patroltype">巡检方式</label>
-                                <select name="patroltype" id="patroltype" class="form-control">
-                                    <option value="0">轮询</option>
-                                    <option value="1">全检</option>
+                            <label for="tasktype" class="lab">所属站点:</label>
+                            <div class="col-sm-2 inputWidth">
+                                <select name="tasktype" id="tasktype" class="form-control">
+                                    <option value="0">省级平台考核</option>
+                                    <option value="1">重点区域巡检</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="tasktype">任务类型</label>
-                                <input type="text" class="form-control" id="tasktype" name="tasktype">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="number">抽检数量</label>
-                                <input type="text" class="form-control" id="number" name="number">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="totalRound">总轮次</label>
-                                <select name="totalRound" id="totalRound" class="form-control">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
+                            <label for="tasktype" class="lab">职务:</label>
+                            <div class="col-sm-2 inputWidth">
+                                <select name="tasktype" id="tasktype" class="form-control">
+                                    <option value="0">省级平台考核</option>
+                                    <option value="1">重点区域巡检</option>
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <label for="qualitydiagnose">质量诊断</label>
-                                <select name="qualitydiagnose" id="qualitydiagnose" class="form-control">
-                                    <option value="0">不启动</option>
-                                    <option value="1">启动</option>
+
+                            <!--  <label for="state" class="lab ">状态:</label>
+                            <div class="col-sm-2 inputWidth">
+                                <select name="state" id="state" class="form-control">
+                                    <option value="0">执行中</option>
+                                    <option value="1">已完成</option>
                                 </select>
-                            </div>
+                            </div> -->
+
+
                         </div>
+
                     </form>
+
+                    <form action="" id="queryForm" class="form-horizontal">
+                        <div class="form-group">
+
+                            <label for="state" class="lab">教育程度:</label>
+                            <div class="col-sm-2 inputWidth">
+                                <select name="state" id="state" class="form-control">
+                                    <option value="0">执行中</option>
+                                    <option value="1">已完成</option>
+                                </select>
+                            </div>
+                            <label for="tasktype" class="lab">职业背景:</label>
+                            <div class="col-sm-2 inputWidth">
+                                <select name="tasktype" id="tasktype" class="form-control">
+                                    <option value="0">省级平台考核</option>
+                                    <option value="1">重点区域巡检</option>
+                                </select>
+                            </div>
+                            <label for="state" class="lab ">状态:</label>
+                            <div class="col-sm-2 inputWidth">
+                                <select name="state" id="state" class="form-control">
+                                    <option value="0">执行中</option>
+                                    <option value="1">已完成</option>
+                                </select>
+                            </div>
+
+                            <a href="#" id="queryBtn" class="btn btn-default btn-sm"
+                               style="display:inline;float:left;margin-left:-1%">查询</a>
+                            <a href="#" id="clearBtn" class="btn btn-default btn-sm"
+                               style="display:inline;float:left;margin-left:0.5%">清空</a>
+                        </div>
+
+                    </form>
+
+
+                    <div class="box">
+                        <div class="box-body table-responsive">
+                            <table id="patrolTable" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="myCheckBox"/></th>
+                                    <th><a href="#">姓名</a></th>
+                                    <th><a href="#">手机号</a></th>
+                                    <th><a href="#">职务</a></th>
+                                    <th><a href="#">教育程度</a></th>
+                                    <th><a href="#">职业背景</a></th>
+                                    <th><a href="#">完成任务数量</a></th>
+                                    <th><a href="#">完成培训数量</a></th>
+                                    <th><a href="#">所属站点编号</a></th>
+                                    <th><a href="#">所属站点</a></th>
+                                    <th><a href="#">状态</a></th>
+                                    <th><a href="#">操作</a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th><input type="checkbox" id="myCheckBox"/></th>
+                                    <td>用户1</td>
+                                    <td>15011000000</td>
+                                    <td>站长</td>
+                                    <td>本科</td>
+                                    <td>军人</td>
+                                    <td>100</td>
+                                    <td>100</td>
+                                    <td>F001/01</td>
+                                    <td>方庄社区微型消防站</td>
+                                    <td>有效</td>
+                                    <td>查看详情</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                            <div class="input-group pull-right" style="padding-top: 10px">
+                                <span class="input-group-addon" id="basic-addon1">每页记录数</span>
+                                <input type="text" class="form-control" placeholder="number"
+                                       aria-describedby="basic-addon1">
+                            </div>
+
+                            <div class="pull-right">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li>
+                                            <a href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="container" style="padding-top: 100px">
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <button type="button" class="btn btn-default">批量导入</button>
+                                    <button type="button" class="btn btn-default">批量导出</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <div class="modal-footer">
-                </div>
+                <!-- /.box -->
+            </div>
+</div>
+</section>
+</aside>
+<!-- /.right-side -->
+</div>
+<!-- ./wrapper -->
+<!-- Modal -->
+<!--添加省级平台考核-->
+<div class="modal fade" id="addProvince" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog" style="width:600px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">新建任务-省级平台考核</h4>
+            </div>
+            <div class="modal-body">
+                <form id="addProvinceForm" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="taskname">任务名称</label>
+                            <input type="text" class="form-control" id="taskname" name="taskname">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="patroltype">巡检方式</label>
+                            <select name="patroltype" id="patroltype" class="form-control">
+                                <option value="0">轮询</option>
+                                <option value="1">全检</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="tasktype">任务类型</label>
+                            <input type="text" class="form-control" id="tasktype" name="tasktype">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="number">抽检数量</label>
+                            <input type="text" class="form-control" id="number" name="number">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="totalRound">总轮次</label>
+                            <select name="totalRound" id="totalRound" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="qualitydiagnose">质量诊断</label>
+                            <select name="qualitydiagnose" id="qualitydiagnose" class="form-control">
+                                <option value="0">不启动</option>
+                                <option value="1">启动</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
             </div>
         </div>
     </div>
-    <!--添加重点区域-->
-    <div class="modal fade" id="addRegion" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" data-backdrop="static">
-        <div class="modal-dialog" style="width:600px;" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">新建任务-重点区域巡检</h4>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                </div>
+</div>
+<!--添加重点区域-->
+<div class="modal fade" id="addRegion" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog" style="width:600px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">新建任务-重点区域巡检</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
             </div>
         </div>
     </div>
-    <!--修改-->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" data-backdrop="static">
-        <div class="modal-dialog" style="width:800px;" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">修改</h4>
-                </div>
-                <div class="modal-body">
-                </div>
+</div>
+<!--修改-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog" style="width:800px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">修改</h4>
+            </div>
+            <div class="modal-body">
             </div>
         </div>
-        <script src="../js/util.js" type="text/javascript"></script>
-        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../js/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../js/datatables/dataTables.bootstrap.min.js" type="text/javascript">
-        </script>
-        <script src="../js/My97DatePicker/WdatePicker.js" type="text/javascript">
-        </script>
-        <script src="../js/AdminLTE/app.js " type="text/javascript "></script>
-        <script src="../js/index/patrol.js" type="text/javascript"></script>
+    </div>
+</div>
+<script src="../js/util.js" type="text/javascript"></script>
+<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../js/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="../js/datatables/dataTables.bootstrap.min.js" type="text/javascript">
+</script>
+<script src="../js/My97DatePicker/WdatePicker.js" type="text/javascript">
+</script>
+<script src="../js/AdminLTE/app.js " type="text/javascript "></script>
+<script src="../js/index/patrol.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        $.get("http://localhost:8080/pages/sidebar.html",function (data) {
+            var render = template.compile(data);
+            var args = {
+                usesName: 'Jack',
+                currentPage: 'userManage'
+            }
+            var html = render(args);
+            $('#sidebar').html(html);
+        })
+    })
+
+</script>
 </body>
 
 </html>
