@@ -1,9 +1,9 @@
 package com.bupt.domain;
 
-import com.bupt.common.base.DomainEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by bupt626 on 17-4-12.
@@ -21,9 +21,8 @@ public class UserInfo  {
     private Integer educational;
     private String professional;
     private String status;
+    private Date createTime;
     private String siteInfoId;
-
-
     private RoleInfo roleInfo;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -137,6 +136,14 @@ public class UserInfo  {
         this.siteInfoId = userInfo.getSiteInfoId();
         this.roleInfo = userInfo.getRoleInfo();
     }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="CREATE_TIME")
+    public Date getCreateTime() {
+        return createTime;
+    }
 
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
 }
