@@ -86,6 +86,7 @@ service  = {
             var html = render(args);
             $('#sidebar').html(html);
         })
-    }
+    },
+
 
 };
