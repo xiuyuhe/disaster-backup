@@ -2,12 +2,18 @@ package com.bupt.service;
 
 import com.bupt.common.base.BasePageService;
 import com.bupt.common.base.PageEntity;
+import com.bupt.common.enums.EducationEnum;
+import com.bupt.common.enums.PositionEnum;
+import com.bupt.domain.SiteInfo;
 import com.bupt.domain.UserInfo;
+import com.bupt.repository.SiteInfoRepository;
 import com.bupt.repository.UserInfoRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +24,8 @@ import java.util.Map;
 public class UserInfoService extends BasePageService<UserInfo,String> {
     @Autowired
     private UserInfoRepository userInfoRepository;
+    @Autowired
+    private SiteInfoService siteInfoService;
 
     public void save(UserInfo userInfo){
         userInfoRepository.save(userInfo);
@@ -45,9 +53,33 @@ public class UserInfoService extends BasePageService<UserInfo,String> {
         if (paramaMap.containsKey("educational")){
             sql.append(" and educational =:educational ");
         }
+        if (paramaMap.containsKey("siteInfoId")){
+            sql.append(" and siteInfoId =:siteInfoId ");
+        }
         if (paramaMap.containsKey("professional")){
             sql.append(" and professional =:professional ");
         }
         super.pageByHql(sql.toString(),pageEntity,paramaMap);
+        translate(pageEntity.getResults());
+    }
+
+    private void translate(List<UserInfo> userInfos){
+        for (UserInfo userInfo: userInfos ) {
+            if (userInfo.getEducational() != null){
+                EducationEnum educationEnum = EducationEnum.findByIndex(userInfo.getEducational());
+                userInfo.setEducationalName(educationEnum != null ? educationEnum.getName():"");
+            }
+            if (userInfo.getPosition() != null){
+                String positionName = PositionEnum.findNameByIndex(userInfo.getEducational());
+                userInfo.setPositionName(positionName);
+            }
+            if (StringUtils.isNotBlank(userInfo.getSiteInfoId())){
+                SiteInfo siteInfo = siteInfoService.findOne(userInfo.getSiteInfoId());
+                if (siteInfo != null){
+                    userInfo.setSiteCode(siteInfo.getCode());
+                    userInfo.setSiteName(siteInfo.getName());
+                }
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ import com.bupt.common.base.BasePageService;
 import com.bupt.common.base.PageEntity;
 import com.bupt.domain.SiteInfo;
 import com.bupt.repository.SiteInfoRepository;
+import java.util.List;
 
 @SuppressWarnings("rawtypes")
 @Service
@@ -23,8 +24,12 @@ public class SiteInfoService extends BasePageService {
 		siteInfoRepository.save(siteInfo);
 	}
 
-	public void findOne(String id) {
-		siteInfoRepository.findOne(id);
+	public SiteInfo findOne(String id) {
+		return  siteInfoRepository.findOne(id);
+	}
+
+	public List<SiteInfo> findAll() {
+		return siteInfoRepository.findAll();
 	}
 
 	/**
@@ -36,7 +41,7 @@ public class SiteInfoService extends BasePageService {
 	public void pageByHql(PageEntity<SiteInfo> pageEntity, Map<String, Object> paramaMap) {
 		StringBuilder sql = new StringBuilder(" from SiteInfo where 1=1 ");
 		if (paramaMap.containsKey("name")) { //站点名称
-			sql.append(" and name like:name "); 
+			sql.append(" and name like:name ");
 		}
 		if (paramaMap.containsKey("createTime")) { //建站时间
 			sql.append(" and createTime =:createTime ");

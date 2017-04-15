@@ -24,6 +24,12 @@ public class UserInfo  {
     private Date createTime;
     private String siteInfoId;
     private RoleInfo roleInfo;
+    //游离态字段
+    private String educationalName;
+    private String positionName;
+    private String siteCode;
+    private String siteName;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId")
@@ -145,5 +151,36 @@ public class UserInfo  {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+    @Transient
+    public String getPositionName() {
+        return positionName;
+    }
 
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
+    @Transient
+    public String getEducationalName() {
+        return educationalName;
+    }
+
+    public void setEducationalName(String educationalName) {
+        this.educationalName = educationalName;
+    }
+    @Transient
+    public String getSiteCode() {
+        return siteCode;
+    }
+
+    public void setSiteCode(String siteCode) {
+        this.siteCode = siteCode;
+    }
+    @Transient
+    public String getSiteName() {
+        return siteName;
+    }
+
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
+    }
 }
