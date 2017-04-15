@@ -24,6 +24,9 @@ public class UserInfo  {
     private Date createTime;
     private String siteInfoId;
     private RoleInfo roleInfo;
+    private java.sql.Date birthday;
+    private String email;
+    private String sex;
     //游离态字段
     private String educationalName;
     private String positionName;
@@ -184,4 +187,28 @@ public class UserInfo  {
         this.siteName = siteName;
     }
 
+    @Column(name = "BIRTHDAY")
+    public java.sql.Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(java.sql.Date birthday) {
+        this.birthday = birthday;
+    }
+    @Column(name = "EMAIL")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    @Column(name = "SEX")
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 }
