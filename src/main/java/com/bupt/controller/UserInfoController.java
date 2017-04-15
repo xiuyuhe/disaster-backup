@@ -35,9 +35,13 @@ public class UserInfoController extends BaseCommonController {
         UserInfo userInfo = userInfoService.findByName(userName);
         return sendSuccessMessage(userInfo);
     }
+    @RequestMapping("/findById")
+    public String findOne(String id){
+        UserInfo userInfo = userInfoService.findOne(id);
+        return sendSuccessMessage(userInfo);
+    }
     @RequestMapping(value = "/page",method = { RequestMethod.POST, RequestMethod.HEAD })
-    public String page(UserInfo userInfo,Integer start){
-        start = start != null?start: Constants.INT_ZERO;
+    public String page(UserInfo userInfo,int start){
         PageEntity<UserInfo> pageEntity = new PageEntity<>(start,Constants.PAGE_SIZE);
         userInfoService.pageByHql(pageEntity,buildParameter(userInfo));
         return sendSuccessMessage(pageEntity);

@@ -23,9 +23,11 @@ public class EquipmentInfoService extends BasePageService {
     public void save(EquipmentInfo entity){
         equipmentInfoRepository.save(entity);
     }
-    public void findOne(String id){
-        equipmentInfoRepository.findOne(id);
+
+    public EquipmentInfo findOne(String id){
+        return equipmentInfoRepository.findOne(id);
     }
+
     public void  pageByHql(PageEntity<EquipmentInfo> pageEntity, Map<String,Object> paramaMap){
         StringBuilder sql = new StringBuilder(" from UserInfo where 1=1 ");
         if (paramaMap.containsKey("type")){
