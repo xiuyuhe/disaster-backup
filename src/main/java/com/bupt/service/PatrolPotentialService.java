@@ -23,13 +23,13 @@ public class PatrolPotentialService extends BasePageService {
         repository.save(entity);
     }
 
-    public void findOne(String id) {
-        repository.findOne(id);
+    public PatrolPotential findOne(String id) {
+        return repository.findOne(id);
     }
 
     public void pageByHql(PageEntity<PatrolPotential> pageEntity, Map<String, Object> paramaMap) {
         StringBuilder sql = new StringBuilder(" from PatrolPotential where 1=1 ");
-        if (paramaMap.containsKey("code")) { //站点名称
+        if (paramaMap.containsKey("code")) { //种类编码
             sql.append(" and code =:code ");
         }
         super.pageByHql(sql.toString(), pageEntity, paramaMap);
