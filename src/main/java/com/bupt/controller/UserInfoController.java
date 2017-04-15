@@ -53,7 +53,7 @@ public class UserInfoController extends BaseCommonController {
         return sendSuccessMessage(results);
     }
     @RequestMapping(value = "/page",method = { RequestMethod.POST, RequestMethod.HEAD })
-    public String page(UserInfo userInfo,int start){
+    public String page(UserInfo userInfo, int start){
         PageEntity<UserInfo> pageEntity = new PageEntity<>(start,Constants.PAGE_SIZE);
         userInfoService.pageByHql(pageEntity,buildParameter(userInfo));
         return sendSuccessMessage(pageEntity);
