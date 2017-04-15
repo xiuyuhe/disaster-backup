@@ -15,7 +15,7 @@ import java.util.List;
 @SuppressWarnings("rawtypes")
 @Service
 @Transactional
-public class SiteInfoService extends BasePageService {
+public class SiteInfoService extends BasePageService<SiteInfo,String> {
 
 	@Autowired
 	private SiteInfoRepository siteInfoRepository;
@@ -41,7 +41,7 @@ public class SiteInfoService extends BasePageService {
 	public void pageByHql(PageEntity<SiteInfo> pageEntity, Map<String, Object> paramaMap) {
 		StringBuilder sql = new StringBuilder(" from SiteInfo where 1=1 ");
 		if (paramaMap.containsKey("name")) { //站点名称
-			sql.append(" and name like:name ");
+			sql.append(" and name =:name ");
 		}
 		if (paramaMap.containsKey("createTime")) { //建站时间
 			sql.append(" and createTime =:createTime ");

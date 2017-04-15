@@ -37,7 +37,7 @@ public class SiteInfoController extends BaseCommonController {
 	private Map<String, Object> buildParameter(SiteInfo entity) {
 		Map<String, Object> parameterMap = new HashMap<>();
 		if (StringUtils.isNotBlank(entity.getName())) { // 站点名称 模糊查询
-			parameterMap.put("name", "%"+entity.getName()+"%");
+			parameterMap.put("name", entity.getName());
 		}
 		if (null != entity.getCreateTime()) { // 建站时间
 			parameterMap.put("createTime", entity.getCreateTime());

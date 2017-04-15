@@ -176,12 +176,12 @@ ol.unstyled {
 .search {
         display:inline;
         float:left;
-        margin-left:-1%;
+        margin-left:5%;
     }
 .clean {
         display:inline;
         float:left;
-        margin-left:0.5%;
+        margin-left:5%;
     }
 
 .new-table {
