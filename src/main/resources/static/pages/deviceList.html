@@ -6,7 +6,6 @@
     <title>应急物资管理</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
-    <link rel="shortcut icon" href="../favicon.ico">
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -20,6 +19,8 @@
     <script src="../js/jquery.validate.js" type="text/javascript"></script>
     <script src="../js/jquery.easyui.min.js" type="text/javascript"></script>
     <script src="../js/template.js"></script>
+    <script src="../js/service.js" type="text/javascript"></script>
+        <script src="../js/jqPaginator.js"></script>
     <style type="text/css">
     body {
         font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
@@ -101,59 +102,12 @@
             <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
-                        <form action="" id="queryForm" class="form-horizontal">
-                            <div class="form-group">
-                               
-                                <label for="taskname" class="lab">所属站点:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <input type="text" class="form-control" id="taskname" name="taskname">
-                                </div>
-                               <label for="tasktype" class="lab">设备类型:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <select name="tasktype" id="tasktype" class="form-control">
-                                        <option value="0">省级平台考核</option>
-                                        <option value="1">重点区域巡检</option>
-                                    </select>
-                                </div>
-                                <label for="tasktype" class="lab">设备状态:</label>
-                                <div class="col-sm-2 inputWidth">
-                                    <select name="tasktype" id="tasktype" class="form-control">
-                                        <option value="0">省级平台考核</option>
-                                        <option value="1">重点区域巡检</option>
-                                    </select>
-                                </div>
-                                <a href="#" id="queryBtn" class="btn btn-default btn-sm" style="display:inline;float:left;margin-left:-1%">查询</a>
-                                <a href="#" id="clearBtn" class="btn btn-default btn-sm" style="display:inline;float:left;margin-left:0.5%">清空</a>
-                             </div>
-
-                        </form>
+                    <div id="myform"></div> 
+                                  
                         <div class="box">
                             <div class="box-body table-responsive">
-                                <table id="patrolTable" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                         <th><input type="checkbox" id="myCheckBox"/></th>                                                         
-                                            <th><a href="#">设备编码</a></th>
-                                             <th><a href="#">设备类型</a></th>
-                                             <th><a href="#">所属站点编码</a></th>
-                                            <th><a href="#">所属站点名称</a></th>
-                                            <th><a href="#">状态</a></th>
-                                            <th><a href="#">操作</a></th>
-                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-              <th><input type="checkbox" id="myCheckBox"/></th>
-              <td>F201-10</td>
-                <td>F001/01</td>
-                <td>方庄社区微型消防站</td>
-                <td>某供应商</td>
-                <td>2017/06/01 </td>
-                <td>某某</td>
-                <td>查看详情</td>
-            </tr>
-                                    </tbody>
-                                </table>
+                             <div id="equipmentTable"></div>   
+                                
 
 
     
@@ -319,6 +273,186 @@
         })
 
     </script>
+
+   <script type="text/html" id="tpl_form">
+                        <form action="" id="queryForm" class="form-horizontal">
+                            <div class="form-group">
+                               
+                                <label for="taskname" class="lab">所属站点:</label>
+                                <div class="col-sm-2 inputWidth">
+                                    <input type="text" class="form-control" id="taskname" name="taskname">
+                                </div>
+                               <label for="tasktype" class="lab">设备类型:</label>
+                                <div class="col-sm-2 inputWidth">
+                                    <select name="tasktype" id="tasktype" class="form-control">
+                                        <option value="0">省级平台考核</option>
+                                        <option value="1">重点区域巡检</option>
+                                    </select>
+                                </div>
+                                <label for="tasktype" class="lab">设备状态:</label>
+                                <div class="col-sm-2 inputWidth">
+                                    <select name="tasktype" id="tasktype" class="form-control">
+                                        <option value="0">省级平台考核</option>
+                                        <option value="1">重点区域巡检</option>
+                                    </select>
+                                </div>
+                                <a href="#" id="queryBtn" class="btn btn-default btn-sm" style="display:inline;float:left;margin-left:-1%">查询</a>
+                                <a href="#" id="clearBtn" class="btn btn-default btn-sm" style="display:inline;float:left;margin-left:0.5%">清空</a>
+                             </div>
+
+                        </form>
+                        </script>
+
+
+                        <script type="text/html" id="tpl-equipmentTable">
+                           
+                            <table id="patrolTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                         <th><input type="checkbox" id="myCheckBox"/></th>                                                         
+                                            <th><a href="#">设备编码</a></th>
+                                             <th><a href="#">设备类型</a></th>
+                                             <th><a href="#">所属站点编码</a></th>
+                                            <th><a href="#">所属站点名称</a></th>
+                                            <th><a href="#">状态</a></th>
+                                            <th><a href="#">操作</a></th>
+                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                     {{each results item}}
+                                    <tr>
+              <th><input type="checkbox" id="myCheckBox"/></th>
+              <td> {{item.id}}</td>
+                <td>{{item.type}}</td>
+                <td>{{item.siteCode}}</td>
+                <td>{{item.siteName}}</td>
+                <td>{{item.status}}</td>
+                <td><a href=# data-toggle="modal" data-target="#myModal">查看详情</a>
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document" style="width: 1000px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">设备信息详情</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontl">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">设备编码:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="inputEmail3" placeholder="F-001">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-3 control-label">设备类型:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="inputPassword3" placeholder="123456789">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-3 control-label">所属站点编码:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="inputPassword3" placeholder="12341">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3"  class="col-sm-3 control-label">所属站点名称:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text"  class="form-control" id="inputPassword3" placeholder="BEIJING">
+                                        </div>
+                                    </div>
+                               
+                                    <div class="form-group">
+                                        <label   class="col-sm-12 control-label" style="margin-top: 10px">上传图片:</label>
+                                        <img src="../img/1.jpg" class="img-responsive col-sm-4" alt="Responsive image">
+                                        <img src="../img/1.jpg" class="img-responsive col-sm-4" alt="Responsive image">
+                                        <img src="../img/1.jpg" class="img-responsive col-sm-4" alt="Responsive image">
+                                    </div>
+                        
+                                          <div role="tabpanel" class="tab-pane" id="profile">
+                                                <table class="table table-hover">
+                                                   
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+                                          </div>
+                                             <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                                                                          
+                                </form>
+                            </div>
+                         
+                        </div>
+                    </div>
+                </div>
+            </td>
+            </tr> {{/each}}
+                                    </tbody>
+                                </table>
+                        </script>
+
+
+<script>
+    // 查询参数，默认只有start
+    var queryEquipmentData = {start: 0}
+
+    // 查询
+    function queryFun() {
+        var data = service.transformFormData($('#queryForm'));
+        queryEquipmentData = data;
+        getEquipment(1);
+        generatPage();
+    }
+
+    // 清空
+    function cleanFun() {
+        service.generateTpl('tpl_form','myform',{});
+    }
+
+    // 查询第page 页的用户
+    function getEquipment(page) {
+        var start = (page - 1) * service.pageSize;
+        queryEquipmentData['start'] = start;
+        service.postService('equipmentInfo/page', queryEquipmentData)
+                .done(function (json) {
+                    if (json.status != "true") {
+                        alert("something wrong");
+                        return;
+                    }
+                    var trueData = json.data;
+                    service.generateTpl('tpl-equipmentTable', 'equipmentTable', trueData);
+                })
+                .fail(function () {
+                    alert("something wrong");
+                });
+    }
+
+    // 生成分页
+    function generatPage() {
+        return service.generatePagination('equipmentInfo/page', queryEquipmentData, 'pageBar', getEquipment);
+    }
+
+    // 页面初始化
+    function init() {
+        getEquipment(1);
+        generatPage();
+        // 初始化查询表格
+        service.generateTpl('tpl_form','myform',{});
+    }
+
+
+    $(function () {
+        init();
+    })
+
+
+</script>
+
+
 
 </body>
 
