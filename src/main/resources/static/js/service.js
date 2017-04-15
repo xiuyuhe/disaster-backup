@@ -45,6 +45,25 @@ service  = {
     generateTpl: function (tplId, domId, data) {
         var html = template(tplId, data);
         $('#'+domId).html(html);
+    },
+
+    generatePagination : function(url, queryUserData, pageBarId, changeFun){
+        service.postService(url, queryUserData).done(function (json) {
+            var trueData = json.data;
+            $('#'+pageBarId).jqPaginator({
+                totalPages: trueData.totalPages,
+                visiblePages: 5,
+                currentPage: trueData.currentPage + 1,
+                prev: '<li class="prev"><a href="javascript:;">Previous</a></li>',
+                next: '<li class="next"><a href="javascript:;">Next</a></li>',
+                page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+                onPageChange: function (num, type) {
+                    if (type == 'change') {
+                        changeFun(num);
+                    }
+                }
+            })
+        });
     }
 
 };
