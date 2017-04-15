@@ -1,8 +1,16 @@
 package com.bupt.controller;
 
 import com.bupt.common.base.BaseCommonController;
+import com.bupt.common.base.Constants;
+import com.bupt.common.base.PageEntity;
+import com.bupt.domain.SiteInfo;
 import com.bupt.domain.TaskInfo;
 import com.bupt.service.TaskInfoService;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,4 +30,26 @@ public class TaskInfoController extends BaseCommonController{
         taskInfoService.save(entity);
         return sendSuccessMessage();
     }
+    
+    @RequestMapping("/page")
+	public String page(TaskInfo entity, Integer start) {
+		start = start != null ? start : Constants.INT_ZERO;
+		PageEntity<TaskInfo> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
+		taskInfoService.pageByHql(pageEntity, buildParameter(entity));
+		return sendSuccessMessage(pageEntity);
+	}
+
+	private Map<String, Object> buildParameter(TaskInfo entity) {
+		Map<String, Object> parameterMap = new HashMap<>();
+		if (StringUtils.isNotBlank(entity.getName())) { // 任务名称 模糊查询
+			parameterMap.put("name", "%"+entity.getName()+"%");
+		}
+		if (StringUtils.isNotBlank(entity.getMember())) { // 接受任务人员
+			parameterMap.put("member", entity.getMember());
+		}
+		if (StringUtils.isNotBlank(entity.getFrequency())) { // 任务频率
+			parameterMap.put("frequency", entity.getFrequency());
+		}
+		return parameterMap;
+	}
 }
