@@ -183,4 +183,5 @@ public class UserInfo  {
     public void setSiteName(String siteName) {
         this.siteName = siteName;
     }
+
 }

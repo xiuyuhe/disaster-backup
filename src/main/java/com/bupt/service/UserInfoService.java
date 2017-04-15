@@ -63,7 +63,8 @@ public class UserInfoService extends BasePageService<UserInfo,String> {
         translate(pageEntity.getResults());
     }
 
-    private void translate(List<UserInfo> userInfos){
+    @Override
+    protected void translate(List<UserInfo> userInfos){
         for (UserInfo userInfo: userInfos ) {
             if (userInfo.getEducational() != null){
                 EducationEnum educationEnum = EducationEnum.findByIndex(userInfo.getEducational());

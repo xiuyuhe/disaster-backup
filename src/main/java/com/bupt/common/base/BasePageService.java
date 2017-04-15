@@ -371,6 +371,9 @@ s    * @return
 
        return page;
    }
+    protected void translate(List<T> list){
+
+    }
 
 
 }
