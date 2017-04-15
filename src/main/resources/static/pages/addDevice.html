@@ -129,31 +129,7 @@
                         </form>
                         <div class="box">
                             <div class="box-body table-responsive">
-                                <table id="patrolTable" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                         <th><input type="checkbox" id="myCheckBox"/></th>                                                         
-                                            <th><a href="#">设备编码</a></th>
-                                             <th><a href="#">设备类型</a></th>
-                                             <th><a href="#">所属站点编码</a></th>
-                                            <th><a href="#">所属站点名称</a></th>
-                                            <th><a href="#">状态</a></th>
-                                            <th><a href="#">操作</a></th>
-                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-              <th><input type="checkbox" id="myCheckBox"/></th>
-              <td>F201-10</td>
-                <td>F001/01</td>
-                <td>方庄社区微型消防站</td>
-                <td>某供应商</td>
-                <td>2017/06/01 </td>
-                <td>某某</td>
-                <td>查看详情</td>
-            </tr>
-                                    </tbody>
-                                </table>
+                               <div class="deviceTable"></div>
     <div class="pull-right">
         <nav aria-label="Page navigation">
             <ul class="pagination">
@@ -313,6 +289,57 @@
                 var html = render(args);
                 $('#sidebar').html(html);
             })
+        })
+    </script>
+    <script type="text/htm" id="tpl-device">
+    <table id="patrolTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                         <th><input type="checkbox" id="myCheckBox"/></th>                                                         
+                                            <th><a href="#">设备编码</a></th>
+                                             <th><a href="#">设备类型</a></th>
+                                             <th><a href="#">所属站点编码</a></th>
+                                            <th><a href="#">所属站点名称</a></th>
+                                            <th><a href="#">状态</a></th>
+                                            <th><a href="#">操作</a></th>
+                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{each results as item}}
+                                    <tr>
+              <th><input type="checkbox" id="myCheckBox"/></th>
+              <td>{{item.id}}</td>
+                <td>{{item.type}}</td>
+                <td>{{item.siteInfoId}}</td>
+                <td>{{null}</td>
+                <td>{{item.status}} </td>
+                <td>查看详情</td>
+            </tr>
+            {{each}}
+                                    </tbody>
+                                </table>
+      
+    </script>
+    <script>
+        var getDevice= function(){
+            $.ajax({
+                url:"http://localhost:8080/equipmentInfo/page?start=0",
+                method:'GET',
+                dataType:'josn'
+            }).done(function(json){
+                 if(json.status != "true"){
+                alert("something wrong1234");
+                return ;
+            }
+            var trueData=josn.data;
+            var html=template('deviceTable',trueData);
+            $('#deviceTable').html(html);
+            }).fail(function () {
+            alert("something wrong");
+        });
+    };
+        $(function(){
+            getDevice();
         })
     </script>
 

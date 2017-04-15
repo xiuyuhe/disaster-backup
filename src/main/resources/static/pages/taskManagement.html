@@ -143,32 +143,7 @@
                         </form>
                         <div class="box">
                             <div class="box-body table-responsive">
-                                <table id="patrolTable" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                         <th><input type="checkbox" id="myCheckBox"/></th>                                                 
-                                            <th><a href="#">任务编码</a></th>
-                                             <th><a href="#">任务名称</a></th>
-                                             <th><a href="#">频率</a></th>
-                                            <th><a href="#">接受任务人员</a></th>
-                                            <th><a href="#">操作</a></th>
-                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-              <th><input type="checkbox" id="myCheckBox"/></th>
-              <td>F201-1</td>
-                <td>签到打卡</td>
-                <td>每天</td>
-                <td>全员</td>
-                <td>查看详情</td> 	 		
-
-            </tr>
-                                    </tbody>
-                                </table>
-
-
-    
+                                <div id="taskTable"></div>  
           <div class="col-xs-3">
         <div class="input-group pull-right" style="padding-top: 10px">
           <span class="input-group-addon" id="basic-addon1">每页记录数</span>
@@ -320,6 +295,53 @@
                 var html = render(args);
                 $('#sidebar').html(html);
             })
+        })
+    </script>
+    <script type="text/html" id="tepl-task">
+        <table id="patrolTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                         <th><input type="checkbox" id="myCheckBox"/></th>                                                 
+                                            <th><a href="#">任务编码</a></th>
+                                             <th><a href="#">任务名称</a></th>
+                                             <th><a href="#">频率</a></th>
+                                            <th><a href="#">接受任务人员</a></th>
+                                            <th><a href="#">操作</a></th>
+                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{each results as item}}
+                                    <tr>
+              <th><input type="checkbox" id="myCheckBox"/></th>
+              <td>{{}}</td>
+                <td>{{}}</td>
+                <td>{{}}</td>
+                <td>{{}}</td>
+                <td>{{}}</td>           
+
+            </tr>
+                                    </tbody>
+                                </table>
+    </script>
+
+    <script>
+        var getTask=function(){
+            $.ajax({
+                url:"",
+                method:'GET',
+                dataType:'json'
+            }).done(function(status!='true'){
+                if(status!='true'){
+                alter('something wrong!!');
+            }
+            var trueData=json.data;
+            var html=template('tepl-task',trueData);
+            $('#taskTable').html(html);
+        }
+            )
+        }
+        $(function(){
+            getTask();
         })
     </script>
 

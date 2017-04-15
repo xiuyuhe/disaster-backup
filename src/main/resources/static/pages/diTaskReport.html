@@ -167,7 +167,156 @@
                 <td>100</td>
                 <td>地震局</td>
                 <td>北京市丰台区</td>
-                <td>查看详情</td>
+                <td><a href=# data-toggle="modal" data-target="#myModal">查看详情</a>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">人员信息详情</h4>
+      </div>
+      <div class="modal-body">
+
+
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="张XX">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">联系方式</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="123456789">
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">性别</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="男">
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">教育程度</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="大学本科">
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">职业背景</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="***">
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">实名登记</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">生日</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="1992-09-18">
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">修改人:</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="***">
+    </div>
+  </div>
+
+<div class="form-group">
+    <label for="exampleInputEmail2" class="col-sm-2 control-label">邮箱:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="exampleInputEmail2" class="col-sm-2 control-label">所属站点:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="北京市">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail2" class="col-sm-2 control-label">职务:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="***">
+    </div>
+  </div>
+
+   <div class="form-group">
+    <label for="exampleInputFile"  class="col-sm-2 control-label">上传图片</label>
+    <input type="file" id="exampleInputFile">
+  </div>
+
+    <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">收到的任务</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">收到的培训</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+    <table class="table table-hover">
+    <tr>
+    <th style="width: 150px">序号</th>
+    <th style="width: 150px">任务名称</th>
+    <th style="width: 150px">频率</th>
+      <th style="width: 150px">下发数量</th>
+    <th style="width: 150px">完成状态</th>
+    </tr>
+    <tr>
+    <td>1 </td>
+     <td>2</td>
+     <td>3 </td>
+     <td>4</td>
+    </tr>
+    </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+         <table class="table table-hover">
+    <tr>
+    <th style="width: 150px">序号</th>
+    <th style="width: 150px">课程名称</th>
+    <th style="width: 150px">下发数量</th>
+    <th style="width: 150px">完成状态</th>
+    </tr>
+    <tr>
+    <td>1 </td>
+     <td>2</td>
+     <td>3 </td>
+     <td>4</td>
+    </tr>
+    </table>
+    </div>
+  </div>
+
+</div>
+
+</form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+        <button type="button" class="btn btn-primary">保存修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+</td>
             </tr>
                                     </tbody>
                                 </table>
