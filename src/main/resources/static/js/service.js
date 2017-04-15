@@ -21,5 +21,30 @@ service  = {
             // contentType: 'application/json',
             data: data
         })
+    },
+    /**
+     *
+     * @param form 参数 form  为 表单的jquery 对象
+     * @returns  组装好的对象
+     */
+    transformFormData : function (form) {
+        var arr = form.serializeArray();
+        var data = {};
+        arr.forEach(function (item) {
+            if(item.value){
+                data[item.name] = item.value;
+            }
+        });
+        return data;
+    },
+
+
+    /**
+     *  tplId : template Id
+     */
+    generateTpl: function (tplId, domId, data) {
+        var html = template(tplId, data);
+        $('#'+domId).html(html);
     }
+
 };
