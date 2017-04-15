@@ -364,9 +364,12 @@
 <script>
 
 
-    var getUser = function () {
-        service.getService('userInfo/page')
+    var getUser = function (page) {
+        var start = (page-1) * service.pageSize;
+
+        service.postService('userInfo/page',{start: start})
                 .done(function (json) {
+                    console.log(json);
                     if (json.status != "true") {
                         alert("something wrong");
                         return;
@@ -374,18 +377,6 @@
                     var trueData = json.data;
                     var html = template('tpl-userTable', trueData);
                     $('#userTable').html(html);
-                    // 分页
-                    var pageData = {};
-                    pageData.totalResults = trueData.totalResults;
-                    pageData.totalPages = trueData.totalPages;
-                    pageData.pageSize = trueData.pageSize;
-                    pageData.currentPageLength = trueData.currentPageLength;
-                    pageData.currentPage = trueData.currentPage;
-
-                    console.log(pageData);
-
-
-
                 })
                 .fail(function () {
                     alert("something wrong");
@@ -393,8 +384,9 @@
     };
 
     $(function () {
-        getUser();
-        service.getService('userInfo/page').
+        getUser(1);
+        // 分页
+        service.postService('userInfo/page',{start: 0}).
                 done(function(json){
             var trueData = json.data;
             $('#pageBar').jqPaginator({
@@ -406,7 +398,7 @@
                 page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
                 onPageChange: function(num, type) {
                     if(type == 'change'){
-                        getUser();
+                        getUser(num);
                     }
                 }
             })

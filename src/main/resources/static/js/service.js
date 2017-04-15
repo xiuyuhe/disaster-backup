@@ -3,6 +3,7 @@
  */
 service  = {
     urlPreix: "http://localhost:8080/",
+    pageSize: 1,
 
     getService : function (url) {
         return $.ajax({
@@ -17,7 +18,8 @@ service  = {
             url: service.urlPreix + url,
             method: 'POST',
             dataType: 'json',
-            contentType: 'application/json'
+            // contentType: 'application/json',
+            data: data
         })
     }
 };
