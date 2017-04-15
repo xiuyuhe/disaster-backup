@@ -39,11 +39,14 @@ public class UserInfoService extends BasePageService<UserInfo,String> {
         if (paramaMap.containsKey("status")){
             sql.append(" and status =:status ");
         }
-        if (paramaMap.containsKey("psition")){
-            sql.append(" and psition =:psition ");
+        if (paramaMap.containsKey("position")){
+            sql.append(" and position =:position ");
         }
         if (paramaMap.containsKey("educational")){
             sql.append(" and educational =:educational ");
+        }
+        if (paramaMap.containsKey("professional")){
+            sql.append(" and professional =:professional ");
         }
         super.pageByHql(sql.toString(),pageEntity,paramaMap);
     }

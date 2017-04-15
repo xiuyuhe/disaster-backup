@@ -29,7 +29,7 @@ public class EquipmentInfoService extends BasePageService {
     }
 
     public void  pageByHql(PageEntity<EquipmentInfo> pageEntity, Map<String,Object> paramaMap){
-        StringBuilder sql = new StringBuilder(" from UserInfo where 1=1 ");
+        StringBuilder sql = new StringBuilder(" from EquipmentInfo where 1=1 ");
         if (paramaMap.containsKey("type")){
             sql.append(" and type =:type ");
         }

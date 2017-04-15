@@ -37,8 +37,7 @@ public class EquipmentInfoController extends BaseCommonController{
     }
 
     @RequestMapping("/page")
-    public String page(EquipmentInfo entity,Integer start){
-        start = start != null?start:Constants.INT_ZERO;
+    public String page(EquipmentInfo entity,int start){
         PageEntity<EquipmentInfo> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
         equipmentInfooService.pageByHql(pageEntity,buildParameter(entity));
         return sendSuccessMessage(pageEntity);

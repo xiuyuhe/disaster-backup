@@ -59,3 +59,26 @@
   "status": "true"
 }
 ```
+##人员下拉框对应值
+###职业
+```$xslt
+    YUAN_GONG(1,"员工"),
+    ZHAN_ZHANG(2,"站长");
+```
+###教育
+```$xslt
+    XIAO_XUE(1,"小学"),
+    CHU_ZHONG(2,"初中"),
+    GAO_ZHONG(3,"高中"),
+    BEN_KE(4,"本科"),
+    SHUO_SHI(5,"硕士"),
+    BO_SHI(6,"博士");
+``````
+###职务
+```$xslt
+    JUN_REN(1,"军人"),
+    YI_SHENG(2,"医生"),
+    GONG_REN(3,"工人"),
+    XUE_SHENG(4,"学生");
+
+```

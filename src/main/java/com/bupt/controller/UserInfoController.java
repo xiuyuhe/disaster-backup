@@ -4,6 +4,9 @@ import com.bupt.common.base.BaseCommonController;
 import com.bupt.common.base.BaseController;
 import com.bupt.common.base.Constants;
 import com.bupt.common.base.PageEntity;
+import com.bupt.common.enums.EducationEnum;
+import com.bupt.common.enums.PositionEnum;
+import com.bupt.common.enums.ProfessionEnum;
 import com.bupt.domain.UserInfo;
 import com.bupt.service.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,6 +44,14 @@ public class UserInfoController extends BaseCommonController {
         UserInfo userInfo = userInfoService.findOne(id);
         return sendSuccessMessage(userInfo);
     }
+    @RequestMapping("/findAllEnum")
+    public String findAllEnum(String id){
+        Map<String,Object[]>  results = new HashMap<>();
+        results.put("position",PositionEnum.values() );
+        results.put("education", EducationEnum.values() );
+        results.put("profession", ProfessionEnum.values() );
+        return sendSuccessMessage(results);
+    }
     @RequestMapping(value = "/page",method = { RequestMethod.POST, RequestMethod.HEAD })
     public String page(UserInfo userInfo,int start){
         PageEntity<UserInfo> pageEntity = new PageEntity<>(start,Constants.PAGE_SIZE);
@@ -54,6 +66,18 @@ public class UserInfoController extends BaseCommonController {
         }
         if (StringUtils.isNotBlank(userInfo.getStatus())){
             parameterMap.put("status", userInfo.getStatus());
+        }
+        if (userInfo.getPosition() != null){
+            parameterMap.put("position", userInfo.getPosition());
+        }
+        if (userInfo.getEducational() != null){
+            parameterMap.put("educational", userInfo.getEducational());
+        }
+        if (StringUtils.isNotBlank(userInfo.getProfessional())){
+            parameterMap.put("professional", userInfo.getProfessional());
+        }
+        if (StringUtils.isNotBlank(userInfo.getSiteInfoId())){
+            parameterMap.put("siteInfoId", userInfo.getSiteInfoId());
         }
         return parameterMap;
     }
