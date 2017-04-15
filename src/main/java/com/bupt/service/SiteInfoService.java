@@ -13,7 +13,6 @@ import com.bupt.repository.SiteInfoRepository;
 import java.util.List;
 
 @SuppressWarnings("rawtypes")
-
 @Service
 @Transactional
 public class SiteInfoService extends BasePageService {
