@@ -22,18 +22,18 @@ public class MaterialTypeService extends BasePageService {
     public void save(MaterialType entity){
         repository.save(entity);
     }
-    public void findOne(String id){
-        repository.findOne(id);
+    public  MaterialType findOne(String id){
+        return repository.findOne(id);
     }
     public void pageByHql(PageEntity<MaterialType> pageEntity, Map<String, Object> paramaMap) {
         StringBuilder sql = new StringBuilder(" from MaterialType where 1=1 ");
-        if (paramaMap.containsKey("code")) { //站点名称
+        if (paramaMap.containsKey("code")) { //种类编码
             sql.append(" and code =:code ");
         }
-        if (paramaMap.containsKey("clazz")) { //站点名称
+        if (paramaMap.containsKey("clazz")) { //分类级别
             sql.append(" and clazz =:clazz ");
         }
-        if (paramaMap.containsKey("parentCode")) { //站点名称
+        if (paramaMap.containsKey("parentCode")) { //上级种类编码
             sql.append(" and parentCode =:parentCode ");
         }
         super.pageByHql(sql.toString(),pageEntity,paramaMap);
