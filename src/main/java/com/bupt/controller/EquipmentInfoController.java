@@ -30,12 +30,16 @@ public class EquipmentInfoController extends BaseCommonController{
         equipmentInfooService.save(entity);
         return sendSuccessMessage();
     }
+    @RequestMapping("/findById")
+    public String findById(String id){
+        EquipmentInfo equipmentInfo = equipmentInfooService.findOne(id);
+        return sendSuccessMessage(equipmentInfo);
+    }
 
     @RequestMapping("/page")
     public String page(EquipmentInfo entity,Integer start){
         start = start != null?start:Constants.INT_ZERO;
         PageEntity<EquipmentInfo> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
-        Map<String,Object> parameterMap = new HashMap<>();
         equipmentInfooService.pageByHql(pageEntity,buildParameter(entity));
         return sendSuccessMessage(pageEntity);
     }

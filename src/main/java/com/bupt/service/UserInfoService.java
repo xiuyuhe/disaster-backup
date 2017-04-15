@@ -22,8 +22,8 @@ public class UserInfoService extends BasePageService<UserInfo,String> {
     public void save(UserInfo userInfo){
         userInfoRepository.save(userInfo);
     }
-    public void findOne(String id){
-        userInfoRepository.findOne(id);
+    public UserInfo findOne(String id){
+        return  userInfoRepository.findOne(id);
     }
 
     public UserInfo findByName(String name){

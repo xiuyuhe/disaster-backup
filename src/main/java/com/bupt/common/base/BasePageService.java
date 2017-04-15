@@ -232,6 +232,13 @@ public class BasePageService<T,PK extends Serializable>  {
 
        doPage(page, countQuery, query, recount);
    }
+   protected final <X> void pageBySql(final String hql, final PageEntity<X> page,
+           final Map<String, Object> params, boolean recount) {
+       Query countQuery = this.createQuery(generateCountHql(hql), false, params);
+       Query query =  this.createQuery(hql, false, params);
+
+       doPage(page, countQuery, query, recount);
+   }
 
    /**
     * eg: xxxDao.<Object> pageByHql(hql, page, params)
