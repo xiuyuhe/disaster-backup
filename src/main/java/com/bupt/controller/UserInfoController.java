@@ -1,13 +1,12 @@
 package com.bupt.controller;
 
-import com.bupt.common.base.BaseCommonController;
-import com.bupt.common.base.BaseController;
-import com.bupt.common.base.Constants;
-import com.bupt.common.base.PageEntity;
+import com.bupt.common.base.*;
 import com.bupt.common.enums.EducationEnum;
 import com.bupt.common.enums.PositionEnum;
 import com.bupt.common.enums.ProfessionEnum;
+import com.bupt.domain.SiteInfo;
 import com.bupt.domain.UserInfo;
+import com.bupt.service.SiteInfoService;
 import com.bupt.service.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +28,8 @@ public class UserInfoController extends BaseCommonController {
 
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private SiteInfoService siteInfoService;
 
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(UserInfo userInfo){
@@ -44,13 +46,16 @@ public class UserInfoController extends BaseCommonController {
         UserInfo userInfo = userInfoService.findOne(id);
         return sendSuccessMessage(userInfo);
     }
-    @RequestMapping("/findAllEnum")
-    public String findAllEnum(String id){
-        Map<String,Object[]>  results = new HashMap<>();
-        results.put("position",PositionEnum.values() );
-        results.put("education", EducationEnum.values() );
-        results.put("profession", ProfessionEnum.values() );
-        return sendSuccessMessage(results);
+    @RequestMapping("/findAllSite")
+    public String findAllSite(){
+        List<SiteInfo> siteInfoList = siteInfoService.findAll();
+        List<Text> list = new ArrayList<>();
+        Text text = null;
+        for (SiteInfo siteInfo: siteInfoList) {
+            text = new Text(siteInfo.getId(),siteInfo.getName());
+            list.add(text);
+        }
+        return sendSuccessMessage(list);
     }
     @RequestMapping(value = "/page",method = { RequestMethod.POST, RequestMethod.HEAD })
     public String page(UserInfo userInfo, int start){

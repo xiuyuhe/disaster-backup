@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bupt.domain.SiteInfo;
 import com.bupt.repository.SiteInfoRepository;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class SiteInfoService {
@@ -18,7 +20,11 @@ public class SiteInfoService {
 		siteInfoRepository.save(siteInfo);
 	}
 
-	public void findOne(String id) {
-		siteInfoRepository.findOne(id);
+	public SiteInfo findOne(String id) {
+		return  siteInfoRepository.findOne(id);
+	}
+
+	public List<SiteInfo> findAll() {
+		return siteInfoRepository.findAll();
 	}
 }

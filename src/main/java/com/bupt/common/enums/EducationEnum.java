@@ -20,7 +20,7 @@ public enum EducationEnum {
     }
 
     // 根据index获取enum对象
-    public static EducationEnum valueByIndex(int index) {
+    public static EducationEnum findByIndex(int index) {
         for (EducationEnum positionEnum : EducationEnum.values()) {
             if (index == positionEnum.getValue()) {
                 return positionEnum;

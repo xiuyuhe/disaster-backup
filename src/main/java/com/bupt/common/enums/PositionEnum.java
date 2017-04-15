@@ -16,10 +16,19 @@ public enum PositionEnum {
     }
 
     // 根据index获取enum对象
-    public static PositionEnum valueByIndex(int index) {
+    public static PositionEnum findByIndex(int index) {
         for (PositionEnum positionEnum : PositionEnum.values()) {
             if (index == positionEnum.getValue()) {
                 return positionEnum;
+            }
+        }
+        return null;
+    }
+    // 根据index获取enum对象
+    public static String findNameByIndex(int index) {
+        for (PositionEnum positionEnum : PositionEnum.values()) {
+            if (index == positionEnum.getValue()) {
+                return positionEnum.getName();
             }
         }
         return null;
