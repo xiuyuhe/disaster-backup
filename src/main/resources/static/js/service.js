@@ -60,6 +60,47 @@ service  = {
     generateTpl: function (tplId, domId, data) {
         var html = template(tplId, data);
         $('#'+domId).html(html);
+    },
+
+    generatePagination : function(url, queryUserData, pageBarId, changeFun){
+        service.postService(url, queryUserData).done(function (json) {
+            var trueData = json.data;
+            $('#'+pageBarId).jqPaginator({
+                totalPages: trueData.totalPages,
+                visiblePages: 5,
+                currentPage: trueData.currentPage + 1,
+                prev: '<li class="prev"><a href="javascript:;">Previous</a></li>',
+                next: '<li class="next"><a href="javascript:;">Next</a></li>',
+                page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+                onPageChange: function (num, type) {
+                    if (type == 'change') {
+                        changeFun(num);
+                    }
+                }
+            })
+        });
+    },
+    /**
+     * @param args
+     * {
+     *   userName : 用户名
+     *   currentPage : 当前页面分组
+     *   currentSubPage: 当前具体导航
+     *   role : []  权限组
+
+     * }
+     *
+     */
+    generateSideBar: function (args) {
+        $.get(service.urlPreix+"pages/sidebar.html", function (data,args) {
+            var render = template.compile(data);
+            var args = {
+                usesName: args.userName,
+                currentPage: args.currentPage
+            };
+            var html = render(args);
+            $('#sidebar').html(html);
+        })
     }
 
 };

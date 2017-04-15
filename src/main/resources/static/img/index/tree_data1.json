@@ -1,0 +1,6 @@
+{
+    "taskno": "4028944b5750b0b5015750e4d4c20002",
+    "isdefault": "false",
+    "timeconfig": { "id": "1", "endtime": "2016-11-03 11:04:30", "starttime": "2016-11-02 11:04:30", "intervaltime": "1478056000", "scopetype": "2", "targetid": "1" },
+    "alarmconfig": [{ "id": "LOST", "idname": "信号丢失", "isalarm": "TRUE", "limittime": "TRUE", "serious": "100" }, { "id": "color", "idname": "偏色", "isalarm": "FALSE", "limittime": "FALSE", "serious": "99" }]
+}

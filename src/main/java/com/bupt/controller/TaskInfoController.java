@@ -3,7 +3,6 @@ package com.bupt.controller;
 import com.bupt.common.base.BaseCommonController;
 import com.bupt.common.base.Constants;
 import com.bupt.common.base.PageEntity;
-import com.bupt.domain.SiteInfo;
 import com.bupt.domain.TaskInfo;
 import com.bupt.service.TaskInfoService;
 
@@ -33,7 +32,6 @@ public class TaskInfoController extends BaseCommonController{
     
     @RequestMapping("/page")
 	public String page(TaskInfo entity, Integer start) {
-		start = start != null ? start : Constants.INT_ZERO;
 		PageEntity<TaskInfo> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
 		taskInfoService.pageByHql(pageEntity, buildParameter(entity));
 		return sendSuccessMessage(pageEntity);

@@ -6,7 +6,6 @@
     <title>应急物资管理</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
-    <link rel="shortcut icon" href="../favicon.ico">
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- font Awesome -->
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -124,9 +123,108 @@
                                 <div class="btn-group" role="group" aria-label="...">
                                     <button type="button" class="btn btn-default">批量导入</button>
                                     <button type="button" class="btn btn-default">批量导出</button>
+                                    <button type="button" class="btn btn-default">删除人员</button>
+                                    <button type="button" class="btn btn-default" data-toggle="modal"
+                                            data-target="#addUserModle">
+                                        新增人员
+                                    </button>
+                                    <div class="modal fade" id="addUserModle" tabindex="-1" role="dialog"
+                                         aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">增加人员</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>
+                                                        <form class="form-horizontal">
+                                                            <div class="form-group">
+                                                                <label for="name" class="col-sm-2 control-label">姓名:</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" id="name" placeholder="请输入姓名" name="name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label  class="col-sm-2 control-label">性别:</label>
+                                                                <div class="col-sm-10">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="inlineRadioOptions"
+                                                                               name="sex" value="man"> 男
+                                                                    </label>
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="inlineRadioOptions"
+                                                                               name="sex" value="female"> 女
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="birthday" class="col-sm-2 control-label">生日:</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="date" class="form-control" id="birthday"  name="birthday">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="position" class="col-sm-2 control-label">职务:</label>
+                                                                <div class="col-sm-10">
+                                                                    <select name="position" id="position"
+                                                                            class="form-control">
+                                                                        <option value="1">省级平台考核</option>
+                                                                        <option value="2">重点区域巡检</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="educational" class="col-sm-2 control-label">教育程度:</label>
+                                                                <div class="col-sm-10">
+                                                                    <select name="position" id="educational"
+                                                                            class="form-control">
+                                                                        <option value="1">小学</option>
+                                                                        <option value="2">初中</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="professional" class="col-sm-2 control-label">职业背景:</label>
+                                                                <div class="col-sm-10">
+                                                                    <select name="professional" id="professional"
+                                                                            class="form-control">
+                                                                        <option value="1">军人</option>
+                                                                        <option value="2">工人</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="mobilePhone" class="col-sm-2 control-label">手机号码:</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="number" class="form-control" id="mobilePhone" placeholder="手机号码" name="mobilePhone">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="pic" class="col-sm-2 control-label">上传照片:</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="file" id="pic">
+                                                                </div>
+                                                            </div>
 
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        关闭/取消
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary">保存更改</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+
 
                         </div>
                     </div>
@@ -144,7 +242,7 @@
 <!--添加省级平台考核-->
 <div class="modal fade" id="addProvince" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
      data-backdrop="static">
-    <div class="modal-dialog" style="width:600px;" role="document">
+    <div class="modal-dialog" style="width:1000px;" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -295,7 +393,7 @@
             <td><a href=# data-toggle="modal" data-target="#myModal">查看详情</a>
 
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog" role="document" style="width: 1000px">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -304,92 +402,94 @@
                             <div class="modal-body">
 
 
-                                <form class="form-horizontal">
+                                <form class="form-horizontl">
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
-                                        <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputEmail3" placeholder="张XX">
+                                        <label for="inputEmail3" class="col-sm-1 control-label">姓名:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="inputEmail3" placeholder="张XX">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">联系方式</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="123456789">
+                                        <label for="inputPassword3" class="col-sm-1 control-label">联系方式:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="inputPassword3" placeholder="123456789">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">性别</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="男">
+                                        <label for="inputPassword3" class="col-sm-1 control-label">性别:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="inputPassword3" placeholder="男">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">教育程度</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="大学本科">
+                                        <label for="inputPassword3"  class="col-sm-1 control-label">教育程度:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text"  class="form-control" id="inputPassword3" placeholder="大学本科">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">职业背景</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="***">
+                                        <label for="inputPassword3" class="col-sm-1 control-label">职业背景:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="inputPassword3" placeholder="***">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">实名登记</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                        <label for="inputPassword3" class="col-sm-1 control-label">实名登记:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text"  class="form-control" id="inputPassword3" placeholder="Password">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">生日</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                        <label for="inputPassword3" class="col-sm-1 control-label">生日:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text"   class="form-control" id="inputPassword3" placeholder="xxx年xx月">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="1992-09-18">
+                                        <label for="inputPassword3" class="col-sm-1 control-label">手机</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="inputPassword3" placeholder="1992-09-18">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">修改人:</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="***">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail2" class="col-sm-2 control-label">邮箱:</label>
-                                        <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail2" class="col-sm-2 control-label">所属站点:</label>
-                                        <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="北京市">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail2" class="col-sm-2 control-label">职务:</label>
-                                        <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="***">
+                                        <label for="inputPassword3" class="col-sm-1 control-label">修改人:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text"  class="form-control" id="inputPassword3" placeholder="***">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputFile"  class="col-sm-2 control-label">上传图片</label>
-                                        <input type="file" id="exampleInputFile">
+                                        <label for="exampleInputEmail2" class="col-sm-1 control-label">邮箱:</label>
+                                        <div class="col-sm-3">
+                                            <input type="email"  class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                                        </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail2" class="col-sm-1 control-label">所属站点:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text"  class="form-control" id="exampleInputEmail2" placeholder="北京市">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail2" class="col-sm-1 control-label" >职务:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text"  class="form-control" id="exampleInputEmail2" placeholder="***">
+                                        </div>
+                               
+                                    <div class="form-group">
+                                        <label   class="col-sm-12 control-label" style="margin-top: 10px">上传图片:</label>
+                                        <img src="../img/1.jpg" class="img-responsive col-sm-4" alt="Responsive image">
+                                        <img src="../img/1.jpg" class="img-responsive col-sm-4" alt="Responsive image">
+                                        <img src="../img/1.jpg" class="img-responsive col-sm-4" alt="Responsive image">
+                                    </div>
+                                 
 
-                                    <div>
+
 
                                         <!-- Nav tabs -->
-                                        <ul class="nav nav-tabs" role="tablist">
-                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">收到的任务</a></li>
-                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">收到的培训</a></li>
+                                        <ul class="nav nav-tabs" role="tablist" 10px">
+                                            <li  style="margin-top:10px" role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">收到的任务</a></li>
+                                            <li  style="margin-top:10px" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">收到的培训</a></li>
                                         </ul>
 
                                         <!-- Tab panes -->
@@ -411,6 +511,8 @@
                                                     </tr>
                                                 </table>
                                             </div>
+
+
                                             <div role="tabpanel" class="tab-pane" id="profile">
                                                 <table class="table table-hover">
                                                     <tr>
@@ -436,7 +538,6 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
-                                <button type="button" class="btn btn-primary">保存修改</button>
                             </div>
                         </div>
                     </div>
@@ -449,7 +550,7 @@
     </table>
 </script>
 
-!--queryForm-->
+<!--queryForm-->
 <script type="text/html" id="tpl_form">
     <form action="" id="queryForm" class="form-horizontal">
         <div class="form-group form-group-sm">
@@ -553,22 +654,7 @@
 
     // 生成分页
     function generatPage() {
-        service.postService('userInfo/page', queryUserData).done(function (json) {
-            var trueData = json.data;
-            $('#pageBar').jqPaginator({
-                totalPages: trueData.totalPages,
-                visiblePages: 5,
-                currentPage: trueData.currentPage + 1,
-                prev: '<li class="prev"><a href="javascript:;">Previous</a></li>',
-                next: '<li class="next"><a href="javascript:;">Next</a></li>',
-                page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-                onPageChange: function (num, type) {
-                    if (type == 'change') {
-                        getUser(num);
-                    }
-                }
-            })
-        });
+        return service.generatePagination('userInfo/page', queryUserData, 'pageBar', getUser);
     }
 
     // 页面初始化
