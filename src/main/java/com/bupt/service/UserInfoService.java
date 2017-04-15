@@ -28,6 +28,11 @@ public class UserInfoService extends BasePageService<UserInfo,String> {
     private SiteInfoService siteInfoService;
 
     public void save(UserInfo userInfo){
+        String mobilePhone = userInfo.getMobilePhone();
+        if (userInfo.getPassword() == null) {
+            userInfo.setPassword(mobilePhone.substring(mobilePhone.length()-7, mobilePhone.length()-1));
+        }
+        userInfo.setUserName(mobilePhone);
         userInfoRepository.save(userInfo);
     }
     public UserInfo findOne(String id){
