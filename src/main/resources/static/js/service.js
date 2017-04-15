@@ -12,6 +12,21 @@ service  = {
             dataType: 'json'
         });
     },
+   
+    getGetService : function (url,data) {
+        url += "?";
+        for(var p in data){
+            if(typeof ( data [ p ]) != " function " ){
+                url += p + "=" + data [ p ] + "&";
+            }
+        }
+        url = url.substring(0,url.length-1);
+        return $.ajax({
+            url: service.urlPreix + url,
+            method: 'GET',
+            dataType: 'json'
+        });
+    },
 
     postService : function (url, data) {
         return $.ajax({

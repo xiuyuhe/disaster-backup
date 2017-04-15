@@ -159,6 +159,7 @@ ol.unstyled {
     color: red;
 }
 
+
 .btn-disabled {
     background-color: #999999;
     ;
@@ -168,4 +169,22 @@ ol.unstyled {
 
 .user-menu {
     cursor: pointer;
+}
+
+
+
+.search {
+        display:inline;
+        float:left;
+        margin-left:-1%;
+    }
+.clean {
+        display:inline;
+        float:left;
+        margin-left:0.5%;
+    }
+
+.new-table {
+    background: #B0BED9!important;
+    color: blue;
 }

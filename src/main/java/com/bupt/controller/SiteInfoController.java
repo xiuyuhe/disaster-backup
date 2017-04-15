@@ -28,8 +28,7 @@ public class SiteInfoController extends BaseCommonController {
 	}
 
 	@RequestMapping("/page")
-	public String page(SiteInfo entity, Integer start) {
-		start = start != null ? start : Constants.INT_ZERO;
+	public String page(SiteInfo entity, int start) {
 		PageEntity<SiteInfo> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
 		siteInfoService.pageByHql(pageEntity, buildParameter(entity));
 		return sendSuccessMessage(pageEntity);
