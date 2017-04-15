@@ -25,5 +25,4 @@ public class DemoController {
         return "demo";
     }
 
-
 }

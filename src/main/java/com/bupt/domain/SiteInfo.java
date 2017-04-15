@@ -1,5 +1,7 @@
 package com.bupt.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -15,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 
 @Entity
-@Table(name = "site_info")
+@Table(name = "site_info", schema = "disaster-recovery", catalog = "")
 public class SiteInfo {
 	private String id;
 	private String code;
@@ -26,20 +29,23 @@ public class SiteInfo {
 	private String chargeUnit;
 	private String carNumber;
 	private String status;
-	
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(name="ID", nullable = false)
+	private String place;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date createTime;
+
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	@Column(name = "ID", nullable = false)
 	public String getId() {
 		return id;
 	}
-    
+
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-    @Column(name = "CODE")
+
+	@Column(name = "CODE")
 	public String getCode() {
 		return code;
 	}
@@ -47,16 +53,16 @@ public class SiteInfo {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
+
 	@Column(name = "NAME")
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	@Column(name = "STATION_MASTER")
 	public String getStationMaster() {
 		return stationMaster;
@@ -65,7 +71,7 @@ public class SiteInfo {
 	public void setStationMaster(String stationMaster) {
 		this.stationMaster = stationMaster;
 	}
-	
+
 	@Column(name = "PERSON_NUMBER")
 	public String getPersonNumber() {
 		return personNumber;
@@ -74,7 +80,7 @@ public class SiteInfo {
 	public void setPersonNumber(String personNumber) {
 		this.personNumber = personNumber;
 	}
-	
+
 	@Column(name = "PROPERTY_NUMBER")
 	public String getPropertyNumber() {
 		return propertyNumber;
@@ -83,7 +89,7 @@ public class SiteInfo {
 	public void setPropertyNumber(String propertyNumber) {
 		this.propertyNumber = propertyNumber;
 	}
-	
+
 	@Column(name = "CHARGE_UNIT")
 	public String getChargeUnit() {
 		return chargeUnit;
@@ -92,7 +98,7 @@ public class SiteInfo {
 	public void setChargeUnit(String chargeUnit) {
 		this.chargeUnit = chargeUnit;
 	}
-	
+
 	@Column(name = "CAR_NUMBER")
 	public String getCarNumber() {
 		return carNumber;
@@ -101,7 +107,7 @@ public class SiteInfo {
 	public void setCarNumber(String carNumber) {
 		this.carNumber = carNumber;
 	}
-	
+
 	@Column(name = "STATUS")
 	public String getStatus() {
 		return status;
@@ -110,4 +116,23 @@ public class SiteInfo {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	@Column(name = "PLACE")
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+	
+	@Column(name = "CREATE_TIME")
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
 }

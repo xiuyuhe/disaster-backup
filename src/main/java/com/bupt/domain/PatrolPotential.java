@@ -3,6 +3,7 @@ package com.bupt.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by bupt626 on 17-4-13.
