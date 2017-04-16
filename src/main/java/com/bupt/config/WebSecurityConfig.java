@@ -178,11 +178,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         public boolean supports(Class<?> arg0) {
             return true;
         }
-
-    }
-
-    @Bean
-    public org.springframework.security.crypto.password.PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

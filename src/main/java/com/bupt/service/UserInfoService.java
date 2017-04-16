@@ -4,12 +4,14 @@ import com.bupt.common.base.BasePageService;
 import com.bupt.common.base.PageEntity;
 import com.bupt.common.enums.EducationEnum;
 import com.bupt.common.enums.PositionEnum;
+import com.bupt.domain.RoleInfo;
 import com.bupt.domain.SiteInfo;
 import com.bupt.domain.UserInfo;
 import com.bupt.repository.SiteInfoRepository;
 import com.bupt.repository.UserInfoRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,12 +28,17 @@ public class UserInfoService extends BasePageService<UserInfo,String> {
     private UserInfoRepository userInfoRepository;
     @Autowired
     private SiteInfoService siteInfoService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private RoleInfoService roleInfoService;
 
     public void save(UserInfo userInfo){
         String mobilePhone = userInfo.getMobilePhone();
         if (userInfo.getPassword() == null) {
-            userInfo.setPassword(mobilePhone.substring(mobilePhone.length()-7, mobilePhone.length()-1));
+            userInfo.setPassword(passwordEncoder.encode(mobilePhone.substring(mobilePhone.length()-6)));
         }
+        userInfo.setRoleInfo(roleInfoService.findById("2"));
         userInfo.setUserName(mobilePhone);
         userInfoRepository.save(userInfo);
     }

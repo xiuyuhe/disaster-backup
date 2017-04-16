@@ -136,7 +136,7 @@
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close"><span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <h4 class="modal-title" id="myModalLabel">增加人员</h4>
+                                                    <h4 class="modal-title" id="myModalLabel">人员</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div>
@@ -259,8 +259,8 @@
             <td>{{item.professional}}</td>
             <td>100</td>
             <td>100</td>
-            <td>100</td>
-            <td>Null</td>
+            <td>{{item.siteCode}}</td>
+            <td>{{item.siteName}}</td>
             <td>{{item.status}}</td>
             <td><a href=# data-toggle="modal" data-target="#myModal{{index}}">查看详情</a>
                 <div class="modal fade" id="myModal{{index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -319,7 +319,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-1 control-label">手机</label>
                                         <div class="col-sm-3">
-                                            <input disabled type="text" class="form-control" id="inputPassword3" placeholder="***" value="item.mobilePhone" >
+                                            <input disabled type="text" class="form-control" id="inputPassword3" placeholder="***" value="{{item.mobilePhone}}" >
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -338,7 +338,7 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail2" class="col-sm-1 control-label">所属站点:</label>
                                         <div class="col-sm-3">
-                                            <input disabled type="text"  class="form-control" id="exampleInputEmail2" placeholder="北京市">
+                                            <input disabled type="text"  class="form-control" id="exampleInputEmail2" placeholder="位置" value="{{item.siteName}}">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -443,10 +443,10 @@
             <div class="col-sm-2 inputWidth">
                 <select name="position" id="position" class="form-control input-sm">
                     <option value=""> 全部</option>
-                    <option value="1">军人</option>
-                    <option value="2">医生</option>
-                    <option value="3">工人</option>
-                    <option value="4">学生</option>
+                    <option value="军人">军人</option>
+                    <option value="医生">医生</option>
+                    <option value="工人">工人</option>
+                    <option value="学生">学生</option>
                 </select>
             </div>
             <a href="#" id="queryBtn" class="btn btn-default btn-sm" onclick="queryFun()"
@@ -556,17 +556,17 @@
             <select name="professional" id="professional"
                     class="form-control">
                 <option value=""> -- </option>
-                <option value="1" {{if user}} {{if user.professional ==1}} selected {{/if}}{{/if}}>军人</option>
-                <option value="2" {{if user}} {{if user.professional ==2}} selected {{/if}}{{/if}}>医生</option>
-                <option value="3" {{if user}} {{if user.professional ==3}} selected {{/if}}{{/if}}>工人</option>
-                <option value="4" {{if user}} {{if user.professional ==4}} selected {{/if}}{{/if}}>学生</option>
+                <option value="军人" {{if user}} {{if user.professional =='军人'}} selected {{/if}}{{/if}}>军人</option>
+                <option value="医生" {{if user}} {{if user.professional =='医生'}} selected {{/if}}{{/if}}>医生</option>
+                <option value="工人" {{if user}} {{if user.professional =='工人'}} selected {{/if}}{{/if}}>工人</option>
+                <option value="学生" {{if user}} {{if user.professional =='学生'}} selected {{/if}}{{/if}}>学生</option>
             </select>
         </div>
     </div>
     <div class="form-group">
         <label for="professional" class="col-sm-2 control-label">站点:</label>
         <div class="col-sm-10">
-            <select name="site" id="site"
+            <select name="siteInfoId" id="site"
                     class="form-control">
                 <option value=""> -- </option>
                 {{each sites item}}

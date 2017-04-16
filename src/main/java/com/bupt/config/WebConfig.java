@@ -1,8 +1,10 @@
 package com.bupt.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -24,6 +26,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addRedirectViewController("/", "/pages/patrol.html");
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
+    }
+
+    @Bean
+    public org.springframework.security.crypto.password.PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Component
@@ -48,4 +55,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         public void destroy() {}
 
     }
+
 }
