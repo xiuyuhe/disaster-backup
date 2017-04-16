@@ -1,6 +1,13 @@
 /**
  * Created by hexiuyu on 2017/4/14.
  */
+
+$(function () {
+    $('#logout').on('click', function(){
+        service.postService('logout');
+        window.location.replace("/");
+    });
+})
 service  = {
     urlPreix: "http://localhost:8080/",
     pageSize: 10,
