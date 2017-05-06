@@ -54,9 +54,6 @@ public class UserInfoService extends BasePageService<UserInfo,String> {
             }
     }
 
-    public void deleteById(String id) {
-        userInfoRepository.delete(id);
-    }
 
     public UserInfo findByName(String name){
         return userInfoRepository.findByUserName(name);
