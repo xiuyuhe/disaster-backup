@@ -4,10 +4,8 @@ import com.bupt.common.base.BasePageService;
 import com.bupt.common.base.PageEntity;
 import com.bupt.common.enums.EducationEnum;
 import com.bupt.common.enums.PositionEnum;
-import com.bupt.domain.RoleInfo;
 import com.bupt.domain.SiteInfo;
 import com.bupt.domain.UserInfo;
-import com.bupt.repository.SiteInfoRepository;
 import com.bupt.repository.UserInfoRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +44,15 @@ public class UserInfoService extends BasePageService<UserInfo,String> {
         return  userInfoRepository.findOne(id);
     }
 
+    public void deleteById(String id) {
+        userInfoRepository.delete(id);
+    }
+
     public UserInfo findByName(String name){
         return userInfoRepository.findByUserName(name);
     }
+
+
 
 
     public void  pageByHql(PageEntity<UserInfo> pageEntity, Map<String,Object> paramaMap){

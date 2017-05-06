@@ -30,6 +30,12 @@ public class MaterialInfoController extends BaseCommonController {
 		materialInfoService.save(materialInfo);
 		return sendSuccessMessage();
 	}
+	
+	@RequestMapping("/deleteById")
+	public String deleteById(String id) {
+		materialInfoService.deleteById(id);
+		return sendSuccessMessage();
+	}
 
 	@RequestMapping(value = "/page")
 	public String page(MaterialInfo materialInfo, int start) {
