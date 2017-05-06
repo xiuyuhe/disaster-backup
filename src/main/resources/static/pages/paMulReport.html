@@ -129,33 +129,8 @@
                         </form>
                         <div class="box">
                             <div class="box-body table-responsive">
-                                <table id="patrolTable" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                         <th><input type="checkbox" id="myCheckBox"/></th>
-                                             <th><a href="#">人员编码</a></th>
-                                             <th><a href="#">姓名</a></th>
-                                             <th><a href="#">手机号</a></th>
-                                            <th><a href="#">职务</a></th>
-                                            <th><a href="#">所属站点编号</a></th>
-                                            <th><a href="#">所属站点</a></th>
-                                            <th><a href="#">操作</a></th>
-                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-              <th><input type="checkbox" id="myCheckBox"/></th>
-                <td>1U001-1</td>  
-                <td>用户1</td>
-                <td>15011000000</td>
-                <td>站长</td>
-                <td>F001/01</td>
-                <td>方庄社区微型消防站</td>
-               >
-                <td>查看详情</td>
-            </tr>
-                                    </tbody>
-                                </table>
+                            <div id="userSignTable"></div>
+                                
 
 
 <div class="input-group pull-right" style="padding-top: 10px">
@@ -308,6 +283,132 @@
         })
 
     </script>
+
+
+   <!--  jsTenplate -->
+   <script type="text/html" id="tpl-userSignTable">
+       <table id="patrolTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                         <th><input type="checkbox" id="myCheckBox"/></th>
+                                             <th><a href="#">人员编码</a></th>
+                                             <th><a href="#">姓名</a></th>
+                                             <th><a href="#">手机号</a></th>
+                                            <th><a href="#">职务</a></th>
+                                            <th><a href="#">所属站点编号</a></th>
+                                            <th><a href="#">所属站点</a></th>
+                                            <th><a href="#">操作</a></th>
+                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                     {{each results item index}}
+                                    <tr>
+              <th><input type="checkbox" id="myCheckBox"/></th>
+                <td>{{item.id}}</td>  
+                <td>{{item.name}}</td>
+                <td>{{item.mobilePhone }}</td>
+                <td>{{item.positionName}}</td>
+                <td>{{item.siteCode}}</td>
+                <td>{{item.siteName}}</td>
+               >
+                <td>查看详情</td>
+            </tr>
+                                    </tbody>
+                                </table>
+   </script>
+
+
+   <!--  js -->
+   <script type="text/javascript">
+    // 查询参数，默认只有start
+    var queryUserData = {start: 0};
+    var siteList ;
+
+    // 查询
+    function queryFun() {
+        var data = service.transformFormData($('#queryForm'));
+        queryUserData = data;
+        getUser(1);
+        generatPage();
+    }
+
+    // 清空
+    function cleanFun() {
+        var data = {sites: siteList};
+        service.generateTpl('tpl_form','myform',data);
+    }
+
+    // 查询第page 页的用户
+    function getUser(page) {
+        var start = (page - 1) * service.pageSize;
+        queryUserData['start'] = start;
+        service.postService('userInfo/page', queryUserData)
+                .done(function (json) {
+                    if (json.status != "true") {
+                        alert("something wrong");
+                        return;
+                    }
+                    var trueData = json.data;
+                    service.generateTpl('tpl-userTable', 'userTable', trueData);
+
+                })
+                .fail(function () {
+                    alert("something wrong");
+                });
+    }
+
+    // 生成分页
+    function generatPage() {
+        return service.generatePagination('userInfo/page', queryUserData, 'pageBar', getUser);
+    }
+
+
+    // 修改用户 表单
+    function editUser(item) {
+        var data = {sites: siteList};
+        data['user'] = item;
+        service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        $('#addUserModle').modal('show');
+    }
+
+    // 创建用户 表单
+    function createUser(){
+        var data = {sites: siteList};
+        service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        $('#addUserModle').modal('show');
+    }
+
+    // 创建或者修改用户 操作
+    function createOrUpdate() {
+        var data = service.transformFormData($('#trueCreateOrUpdateForm'));
+        if(!data.mobilePhone){
+            return
+        }
+        service.postService('userInfo/saveOrUpdate', data)
+                .done(function (json) {
+                    location.reload();
+                        })
+                .fail(function () {
+                    alert("something wrong");
+                });
+    }
+
+    // 页面初始化
+    function init() {
+        getUser(1);
+        generatPage();
+        service.getService('userInfo/findAllSite').done(function(sites){
+            var data = {sites: sites.data};
+            siteList = sites.data;
+/*            service.generateTpl('tpl_form','myform',data);*/
+            service.generateTpl('tpl-userSignTable', 'userSignTable', data);
+        });
+
+    }
+    $(function () {
+        init();
+    })
+   </script>
 </body>
 
 </html>

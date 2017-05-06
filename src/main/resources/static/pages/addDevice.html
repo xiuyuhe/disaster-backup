@@ -139,7 +139,38 @@
 
 
                             <div class="btn-group" role="group" style="margin-top:50px" aria-label="...">
-                                <button type="button" class="btn btn-default">新增设备</button>
+                             <!--    <button type="button" class="btn btn-default">新增设备</button> -->
+                             <button type="button" class="btn btn-default" data-toggle="modal"
+                                           onclick=createEquipment() >
+                                        新增设备
+                                    </button>
+                                    <div class="modal fade" id="addUserModle" tabindex="-1" role="dialog"
+                                         aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">设备</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>
+                                                        <div id="createOrUpdateForm"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        关闭/取消
+                                                    </button>
+                                                    <button type="button" onclick=createOrUpdate() class="btn btn-primary">保存更改</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                                 <button type="button" class="btn btn-default">删除设备</button>
 
                             </div>
@@ -423,6 +454,113 @@
       
 
 </script>
+
+<script type="text/html" id="tpl_createOrUpdateForm">
+    <form class="form-horizontal" id="trueCreateOrUpdateForm">
+    <input type="text" hidden name="id" {{if user}} {{if user.id}} value = {{user.id}} {{/if}}{{/if}}>
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">姓名:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入姓名" name="name"
+                {{if user}} {{if user.name}} value = {{user.name}} {{/if}}{{/if}}
+            >
+        </div>
+    </div>
+    <div class="form-group">
+        <label  class="col-sm-2 control-label">性别:</label>
+        <div class="col-sm-10">
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions"
+                       {{if user}} {{if user.sex =='男'}} checked {{/if}}{{/if}}
+                       name="sex" value="男"> 男
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions"
+                       {{if user}} {{if user.sex =='女'}} checked {{/if}}{{/if}}
+                       name="sex" value="女"> 女
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="birthday" class="col-sm-2 control-label">生日:</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="birthday"
+                   {{if user}} {{if user.birthday}} value = {{user.birthday}} {{/if}}{{/if}}
+                   name="birthday">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="position" class="col-sm-2 control-label">职务:</label>
+        <div class="col-sm-10">
+            <select name="position" id="position"
+                    class="form-control">
+                <option value=""> -- </option>
+                <option value="1" {{if user}} {{if user.position =='1'}} selected {{/if}}{{/if}}>员工</option>
+                <option value="2" {{if user}} {{if user.position =='2'}} selected {{/if}}{{/if}}>站长</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="educational" class="col-sm-2 control-label">教育程度:</label>
+        <div class="col-sm-10">
+            <select name="educational" id="educational"
+                    class="form-control">
+                <option value=""> -- </option>
+                <option value="1" {{if user}} {{if user.educational ==1}} selected {{/if}}{{/if}}>小学</option>
+                <option value="2" {{if user}} {{if user.educational ==2}} selected {{/if}}{{/if}}>初中</option>
+                <option value="3" {{if user}} {{if user.educational ==3}} selected {{/if}}{{/if}}>高中</option>
+                <option value="4" {{if user}} {{if user.educational ==4}} selected {{/if}}{{/if}}>本科</option>
+                <option value="5" {{if user}} {{if user.educational ==5}} selected {{/if}}{{/if}}>硕士</option>
+                <option value="6" {{if user}} {{if user.educational ==6}} selected {{/if}}{{/if}}>博士</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="professional" class="col-sm-2 control-label">职业背景:</label>
+        <div class="col-sm-10">
+            <select name="professional" id="professional"
+                    class="form-control">
+                <option value=""> -- </option>
+                <option value="军人" {{if user}} {{if user.professional =='军人'}} selected {{/if}}{{/if}}>军人</option>
+                <option value="医生" {{if user}} {{if user.professional =='医生'}} selected {{/if}}{{/if}}>医生</option>
+                <option value="工人" {{if user}} {{if user.professional =='工人'}} selected {{/if}}{{/if}}>工人</option>
+                <option value="学生" {{if user}} {{if user.professional =='学生'}} selected {{/if}}{{/if}}>学生</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="professional" class="col-sm-2 control-label">站点:</label>
+        <div class="col-sm-10">
+            <select name="siteInfoId" id="site"
+                    class="form-control">
+                <option value=""> -- </option>
+                {{each sites item}}
+                <option value="{{item.value}}" {{if user}} {{if user.siteInfoId == item.value}} selected {{/if}}{{/if}}>{{item.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="mobilePhone" class="col-sm-2 control-label">手机号码:</label>
+        <div class="col-sm-10">
+            <input type="number" required class="form-control" id="mobilePhone" placeholder="手机号码"
+                   {{if user}}
+                        {{if user.mobilePhone}}
+                            value = {{user.mobilePhone}}
+                        {{/if}}
+                    {{/if}}
+                   name="mobilePhone">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pic" class="col-sm-2 control-label">上传照片:</label>
+        <div class="col-sm-10">
+            <input type="file" id="pic">
+        </div>
+    </div>
+</form>
+    
+</script>
 <script>
     // 查询参数，默认只有start
     var queryEquipmentData = {start: 0}
@@ -468,7 +606,18 @@
         getEquipment(1);
         generatPage();
         // 初始化查询表格
-        service.generateTpl('tpl_form','myform',{});
+       service.getService('equipmentInfo/page').done(function(sites){
+            var data = {sites: sites.data};
+            siteList = sites.data;
+            service.generateTpl('tpl_form','myform',data);
+            service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        });
+    }
+
+    function createEquipment(){
+        var data = {sites: siteList};
+        service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        $('#addUserModle').modal('show');
     }
 
 

@@ -6,7 +6,6 @@
     <title>应急物资管理</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
-    <link rel="shortcut icon" href="../favicon.ico">
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -118,27 +117,7 @@
                         </form>
                         <div class="box">
                             <div class="box-body table-responsive">
-                                <table id="patrolTable" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                         <th><input type="checkbox" id="myCheckBox"/></th>                                             <th><a href="#">序号</a></th>
-                                             <th><a href="#">授权码</a></th>
-                                             <th><a href="#">手机号</a></th>
-                                            <th><a href="#">有效时间</a></th>
-                                            <th><a href="#"> 授权状态</a></th>
-                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-              <th><input type="checkbox" id="myCheckBox"/></th>
-              <td>1</td>
-                <td>1A1B2C3D45G6H</td>
-                <td>15000000001</td>
-                <td>2018-01-01</td>
-                <td>已下发</td>
-            </tr>
-                                    </tbody>
-                                </table>
+                                <div id="codeTable"></div>
 
 
     
@@ -171,7 +150,8 @@
     </div>
     <div class="container" style="padding-top: 100px">
         <div class="btn-group" role="group" aria-label="...">
-    <button type="button" class="btn btn-default">申请授权码</button>
+    <button type="button" class="btn btn-default">
+    <a href="CodeList.html">申请授权码</a></button>
     <button type="button" class="btn btn-default">删除授权码</button>
         </div>
       </div>
@@ -288,7 +268,6 @@
         <script src="../js/My97DatePicker/WdatePicker.js" type="text/javascript">
         </script>
         <script src="../js/AdminLTE/app.js " type="text/javascript "></script>
-        <script src="../js/index/patrol.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $.get("http://localhost:8080/pages/sidebar.html",function (data) {
@@ -301,6 +280,76 @@
                 $('#sidebar').html(html);
             })
         })
+    </script>
+    <script type="text/html" id="tpl-codeTable">
+        <table id="patrolTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                         <th><input type="checkbox" id="myCheckBox"/></th>                                             <th><a href="#">序号</a></th>
+                                             <th><a href="#">授权码</a></th>
+                                             <th><a href="#">手机号</a></th>
+                                            <th><a href="#">有效时间</a></th>
+                                            <th><a href="#"> 授权状态</a></th>
+                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{each results item}}
+                                    <tr>
+              <th><input type="checkbox" id="myCheckBox"/></th>
+              <td>1</td>
+                <td>{{item.id}}</td>
+                <td>{{authorizationCode}}</td>
+                <td>{{phoneNumber}}</td>
+                <td>{{effectiveTime}}</td>
+                <td>{{status}}</td>
+            </tr>
+            {{/each}}
+                                    </tbody>
+                                </table>
+    </script>
+
+    <script type="text/javascript">
+    var queryUserData = {start: 0};
+
+     function generatPage() {
+        return service.generatePagination('authorization/page', queryUserData, 'pageBar', getUser);
+    }
+
+    // 查询第page 页的用户
+    function getUser(page) {
+        var start = (page - 1) * service.pageSize;
+        queryUserData['start'] = start;
+        service.postService('authorization/page', queryUserData)
+                .done(function (json) {
+                    if (json.status != "true") {
+                        alert("something wrong");
+                        return;
+                    }
+                    var trueData = json.data;
+                    service.generateTpl('tpl-codeTable', 'codeTable', trueData);
+
+                })
+                .fail(function () {
+                    alert("something wrong");
+                });
+    }
+
+
+        function init() {
+        getUser(1);
+        generatPage();
+      /* service.getService('userInfo/findAllSite').done(function(sites){
+            var data = {sites: sites.data};
+            siteList = sites.data;
+            service.generateTpl('tpl_form','myform',data);
+            service.generateTpl('tpl-codeTable', 'codeTable', data);
+        });*/
+    }
+
+
+    $(function () {
+    init();
+    })
     </script>
 
 </body>
