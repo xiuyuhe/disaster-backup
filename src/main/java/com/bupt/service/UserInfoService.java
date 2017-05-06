@@ -45,6 +45,16 @@ public class UserInfoService extends BasePageService<UserInfo,String> {
     public UserInfo findOne(String id){
         return  userInfoRepository.findOne(id);
     }
+    public void deleteById(String ids){
+            if (ids.contains(",")){
+                String[] idArray = ids.split(",");
+                for (String id : idArray){
+                    userInfoRepository.delete(id);
+                }
+            }else {
+                userInfoRepository.delete(ids);
+            }
+    }
 
     public UserInfo findByName(String name){
         return userInfoRepository.findByUserName(name);

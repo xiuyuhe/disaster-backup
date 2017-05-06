@@ -46,6 +46,15 @@ public class UserInfoController extends BaseCommonController {
         UserInfo userInfo = userInfoService.findOne(id);
         return sendSuccessMessage(userInfo);
     }
+    @RequestMapping("/deleteById")
+    public String deleteById(String ids){
+        if (StringUtils.isNotBlank(ids)){
+            userInfoService.deleteById(ids);
+            return sendSuccessMessage();
+        }else {
+            return sendFailMessage();
+        }
+    }
     @RequestMapping("/findAllSite")
     public String findAllSite(){
         List<SiteInfo> siteInfoList = siteInfoService.findAll();
