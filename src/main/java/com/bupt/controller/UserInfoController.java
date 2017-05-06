@@ -10,9 +10,7 @@ import com.bupt.service.SiteInfoService;
 import com.bupt.service.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +60,12 @@ public class UserInfoController extends BaseCommonController {
         PageEntity<UserInfo> pageEntity = new PageEntity<>(start,Constants.PAGE_SIZE);
         userInfoService.pageByHql(pageEntity,buildParameter(userInfo));
         return sendSuccessMessage(pageEntity);
+    }
+
+    @DeleteMapping("{id}")
+    public String deleteUser(@PathVariable String id) {
+        userInfoService.deleteById(id);
+        return sendSuccessMessage();
     }
 
     private Map<String,Object> buildParameter(UserInfo userInfo){
