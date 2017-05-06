@@ -30,6 +30,12 @@ public class TaskInfoController extends BaseCommonController{
         return sendSuccessMessage();
     }
     
+	@RequestMapping("/deleteById")
+	public String deleteById(String id) {
+		taskInfoService.deleteById(id);
+		return sendSuccessMessage();
+	}
+    
     @RequestMapping("/page")
 	public String page(TaskInfo entity, Integer start) {
 		PageEntity<TaskInfo> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);

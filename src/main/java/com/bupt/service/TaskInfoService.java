@@ -3,6 +3,7 @@ package com.bupt.service;
 import com.bupt.common.base.BasePageService;
 import com.bupt.common.base.PageEntity;
 import com.bupt.domain.TaskInfo;
+import com.bupt.domain.UserInfo;
 import com.bupt.repository.TaskInfoRepository;
 
 import java.util.Map;
@@ -14,19 +15,22 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by bupt626 on 17-4-12.
  */
-@SuppressWarnings("rawtypes")
 @Service
 @Transactional
-public class TaskInfoService extends BasePageService {
+public class TaskInfoService extends BasePageService<TaskInfo,String> {
 	@Autowired
-	private TaskInfoRepository repository;
+	private TaskInfoRepository taskInforepository;
 
 	public void save(TaskInfo entity) {
-		repository.save(entity);
+		taskInforepository.save(entity);
 	}
 
+	public void deleteById(String id) {
+		taskInforepository.delete(id);
+	}
+	
 	public TaskInfo findOne(String id) {
-		return repository.findOne(id);
+		return taskInforepository.findOne(id);
 	}
 
 	/**
@@ -35,7 +39,6 @@ public class TaskInfoService extends BasePageService {
 	 * @param pageEntity
 	 * @param paramaMap
 	 */
-	@SuppressWarnings("unchecked")
 	public void pageByHql(PageEntity<TaskInfo> pageEntity, Map<String, Object> paramaMap) {
 		StringBuilder sql = new StringBuilder(" from TaskInfo where 1=1 ");
 		if (paramaMap.containsKey("name")) { // 任务名称

@@ -12,7 +12,6 @@ import com.bupt.domain.SiteInfo;
 import com.bupt.repository.SiteInfoRepository;
 import java.util.List;
 
-@SuppressWarnings("rawtypes")
 @Service
 @Transactional
 public class SiteInfoService extends BasePageService<SiteInfo,String> {
@@ -37,7 +36,6 @@ public class SiteInfoService extends BasePageService<SiteInfo,String> {
 	 * @param pageEntity
 	 * @param paramaMap
 	 */
-	@SuppressWarnings("unchecked")
 	public void pageByHql(PageEntity<SiteInfo> pageEntity, Map<String, Object> paramaMap) {
 		StringBuilder sql = new StringBuilder(" from SiteInfo where 1=1 ");
 		if (paramaMap.containsKey("name")) { //站点名称

@@ -33,8 +33,11 @@ public class MaterialInfoService extends BasePageService<MaterialInfo, String>{
 	public MaterialInfo findOne(String id) {
 		return materialInfoRepository.findOne(id);
 	}
+	
+	public void deleteById(String id) {
+		materialInfoRepository.delete(id);
+	}
 
-	@SuppressWarnings("unchecked")
 	public void pageByHql(PageEntity<MaterialInfo> pageEntity, Map<String, Object> paramaMap) {
 		StringBuilder sql = new StringBuilder(" from MaterialInfo where 1=1 ");
 		if (paramaMap.containsKey("parentTypecode")) { //种类(中类)
