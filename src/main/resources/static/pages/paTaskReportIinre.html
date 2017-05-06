@@ -120,34 +120,7 @@
                         </form>
                         <div class="box">
                             <div class="box-body table-responsive">
-                                <table id="patrolTable" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                         <th><input type="checkbox" id="myCheckBox"/></th>
-
-                                             <th><a href="#">入库单编号</a></th>
-                                             <th><a href="#">站点编码</a></th>
-                                             <th><a href="#">站点名称</a></th>
-                                            <th><a href="#">物资来源</a></th>
-                                            <th><a href="#">入库时间</a></th>
-                                            <th><a href="#">经办人</a></th>
-                                            <th><a href="#">操作</a></th>
-                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-              <th><input type="checkbox" id="myCheckBox"/></th>
-              <td>F201-10</td>
-                <td>F001/01</td>
-                <td>方庄社区微型消防站</td>
-                <td>某供应商</td>
-                <td>2017/06/01 </td>
-                <td>某某</td>
-                <td>查看详情</td>
-            </tr>
-                                    </tbody>
-                                </table>
-
+                                <div id="outTable"></div>
 
     
           <div class="col-xs-3">
@@ -313,6 +286,88 @@
             })
         })
 
+
+
+    </script>
+    <script type="text/html">
+        <table id="patrolTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                         <th><input type="checkbox" id="myCheckBox"/></th>
+
+                                             <th><a href="#">入库单编号</a></th>
+                                             <th><a href="#">站点编码</a></th>
+                                             <th><a href="#">站点名称</a></th>
+                                            <th><a href="#">物资来源</a></th>
+                                            <th><a href="#">入库时间</a></th>
+                                            <th><a href="#">经办人</a></th>
+                                            <th><a href="#">操作</a></th>
+                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{each results item}}
+                                    <tr>
+              <th><input type="checkbox" id="myCheckBox"/></th>
+              <td>{{item}}</td>
+                <td>{{item}}</td>
+                <td>{{item}}</td>
+                <td>{{item}}</td>
+                <td>{{item}}</td>
+                <td>{{item}}</td>
+                <td>{{item}}</td>
+            </tr>
+                                    </tbody>
+                                </table>
+
+    </script>
+
+     <script type="text/javascript">
+     var queryUserData = {start: 0};
+     // 查询
+    function queryFun() {
+        var data = service.transformFormData($('#queryForm'));
+        queryUserData = data;
+        getMateral(1);
+        generatPage();
+    }
+         // 查询第page 页的用户
+    function getMateral(page) {
+        var start = (page - 1) * service.pageSize;
+        queryUserData['start'] = start;
+        service.postService('materialInfo/page', queryUserData)
+                .done(function (json) {
+                    if (json.status != "true") {
+                        alert("something wrong");
+                        return;
+                    }
+                    var trueData = json.data;
+                    service.generateTpl('tpl-materalTable', 'materalTable', trueData);
+
+                })
+                .fail(function () {
+                    alert("something wrong");
+                });
+    }
+        // 生成分页
+       function generatPage() {
+        return service.generatePagination('materialInfo/page', queryUserData, 'pageBar', getMateral);
+    }
+
+
+     // 页面初始化
+    function init() {
+        getMateral(1);
+      /*  generatPage();*/
+        /*service.getService('userInfo/findAllSite').done(function(sites){
+            var data = {sites: sites.data};
+            siteList = sites.data;
+            service.generateTpl('tpl_form','myform',data);
+            service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        });*/
+    }
+    $(function () {
+        init();
+    })
     </script>
 </body>
 

@@ -20,7 +20,7 @@
     <script src="../js/jquery.easyui.min.js" type="text/javascript"></script>
     <script src="../js/template.js"></script>
     <script src="../js/service.js" type="text/javascript"></script>
-
+        <script src="../js/jqPaginator.js"></script>
     <style type="text/css">
     body {
         font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
@@ -170,7 +170,8 @@
                                     </select>
                                 </div>
                                 
-                                <a href="#" id="queryBtn" class="btn btn-default btn-sm" style="display:inline;float:left;margin-left:-1%">查询</a>
+                                 <a href="#" id="queryBtn" class="btn btn-default btn-sm" onclick="queryFun()"
+               style="display:inline;float:left;margin-left:0.5%">查询</a>
                                 <a href="#" id="clearBtn" class="btn btn-default btn-sm" style="display:inline;float:left;margin-left:0.5%">清空</a>
                              </div>
 
@@ -354,9 +355,9 @@
                 <td>{{item.serviceCycle}}</td>
                 <td>{{item.shelfLife}}</td>
                 <td>{{item.lastServiceTime}}</td>
-                <td>{{item.serviceUser}}</td>
-                   <td>{{所属站点}}</td>
+                <td>{{item.serviceUser}}</td>                
                 <td>{{item.siteInfoId}}</td>
+                <td>{{item.siteName}}</td>
                 <td>{{item.source}}</td>
                 <td>{{item.lastListTime}}</td>
                 <td>{{item.status}}</td>
@@ -404,7 +405,7 @@
      // 页面初始化
     function init() {
         getMateral(1);
-      /*  generatPage();*/
+        generatPage();
         /*service.getService('userInfo/findAllSite').done(function(sites){
             var data = {sites: sites.data};
             siteList = sites.data;
