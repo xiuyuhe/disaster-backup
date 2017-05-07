@@ -10,7 +10,7 @@ $(function () {
 })
 service  = {
     // urlPreix: service.urlPreix + "",
-    urlPreix: "http://10.101.164.137:8080/",
+    urlPreix: "http://localhost:8080/",
     pageSize: 10,
 
     getService : function (url) {
