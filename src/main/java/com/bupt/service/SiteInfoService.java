@@ -27,6 +27,17 @@ public class SiteInfoService extends BasePageService<SiteInfo,String> {
 		return  siteInfoRepository.findOne(id);
 	}
 
+	public void deleteById(String ids){
+		if (ids.contains(",")){
+			String[] idArray = ids.split(",");
+			for (String id : idArray){
+				siteInfoRepository.delete(id);
+			}
+		}else {
+			siteInfoRepository.delete(ids);
+		}
+	}
+
 	public List<SiteInfo> findAll() {
 		return siteInfoRepository.findAll();
 	}

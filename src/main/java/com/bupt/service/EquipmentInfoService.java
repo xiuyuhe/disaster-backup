@@ -34,6 +34,17 @@ public class EquipmentInfoService extends BasePageService<EquipmentInfo,String> 
         return equipmentInfoRepository.findOne(id);
     }
 
+    public void deleteById(String ids){
+        if (ids.contains(",")){
+            String[] idArray = ids.split(",");
+            for (String id : idArray){
+                equipmentInfoRepository.delete(id);
+            }
+        }else {
+            equipmentInfoRepository.delete(ids);
+        }
+    }
+
     public void  pageByHql(PageEntity<EquipmentInfo> pageEntity, Map<String,Object> paramaMap){
         StringBuilder sql = new StringBuilder(" from EquipmentInfo where 1=1 ");
         if (paramaMap.containsKey("type")){

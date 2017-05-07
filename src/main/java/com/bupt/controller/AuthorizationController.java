@@ -32,16 +32,30 @@ public class AuthorizationController extends BaseCommonController {
     }
     @RequestMapping("/page")
     public String page(Authorization entity, int start){
-        PageEntity<EquipmentInfo> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
+        PageEntity<Authorization> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
         authorizationService.pageByHql(pageEntity,buildParameter(entity));
         return sendSuccessMessage(pageEntity);
     }
-
+    @RequestMapping("/findById")
+    public String findOne(String id){
+        Authorization authorization = authorizationService.findOne(id);
+        return sendSuccessMessage(authorization);
+    }
     private Map<String, Object> buildParameter(Authorization entity) {
         Map<String, Object> parameterMap = new HashMap<>();
         if (StringUtils.isNotBlank(entity.getPhoneNumber())) { // 种类编码
             parameterMap.put("phoneNumber", entity.getPhoneNumber());
         }
         return parameterMap;
+    }
+
+    @RequestMapping("/deleteById")
+    public String deleteById(String ids){
+        if (StringUtils.isNotBlank(ids)){
+            authorizationService.deleteById(ids);
+            return sendSuccessMessage();
+        }else {
+            return sendFailMessage();
+        }
     }
 }

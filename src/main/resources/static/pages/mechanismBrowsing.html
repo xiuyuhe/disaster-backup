@@ -311,7 +311,7 @@
         <script src="../js/index/patrol.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
-            $.get("http://localhost:8080/pages/sidebar.html",function (data) {
+            $.get(service.urlPreix + "pages/sidebar.html",function (data) {
                 var render = template.compile(data);
                 var args = {
                     usesName: 'Jack',

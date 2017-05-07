@@ -21,7 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 
 @Entity
-@Table(name = "material_info", schema = "disaster-recovery", catalog = "")
+@Table(name = "material_info")
 public class MaterialInfo {
 	private String id;
 	private String code; // 物资编码

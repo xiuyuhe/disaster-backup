@@ -15,7 +15,7 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class PatrolPotentialService extends BasePageService {
+public class PatrolPotentialService extends BasePageService<PatrolPotential,String> {
     @Autowired
     private PatrolPotentialRepository repository;
 
@@ -26,7 +26,16 @@ public class PatrolPotentialService extends BasePageService {
     public PatrolPotential findOne(String id) {
         return repository.findOne(id);
     }
-
+    public void deleteById(String ids){
+        if (ids.contains(",")){
+            String[] idArray = ids.split(",");
+            for (String id : idArray){
+                repository.delete(id);
+            }
+        }else {
+            repository.delete(ids);
+        }
+    }
     public void pageByHql(PageEntity<PatrolPotential> pageEntity, Map<String, Object> paramaMap) {
         StringBuilder sql = new StringBuilder(" from PatrolPotential where 1=1 ");
         if (paramaMap.containsKey("code")) { //种类编码

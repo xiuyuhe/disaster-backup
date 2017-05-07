@@ -19,7 +19,7 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class AuthorizationService extends BasePageService{
+public class AuthorizationService extends BasePageService<Authorization,String>{
 
     @Autowired
     private AuthorizationRespository authorizationRespository;
@@ -29,7 +29,17 @@ public class AuthorizationService extends BasePageService{
         return authorizationRespository.findOne(id);
     }
 
-    public void  pageByHql(PageEntity<EquipmentInfo> pageEntity, Map<String,Object> paramaMap){
+    public void deleteById(String ids){
+        if (ids.contains(",")){
+            String[] idArray = ids.split(",");
+            for (String id : idArray){
+                authorizationRespository.delete(id);
+            }
+        }else {
+            authorizationRespository.delete(ids);
+        }
+    }
+    public void  pageByHql(PageEntity<Authorization> pageEntity, Map<String,Object> paramaMap){
         StringBuilder sql = new StringBuilder(" from Authorization where 1=1 ");
         if (paramaMap.containsKey("phoneNumber")){
             sql.append(" and phoneNumber =:phoneNumber ");

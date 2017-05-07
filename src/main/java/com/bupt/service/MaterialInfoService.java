@@ -33,9 +33,16 @@ public class MaterialInfoService extends BasePageService<MaterialInfo, String>{
 	public MaterialInfo findOne(String id) {
 		return materialInfoRepository.findOne(id);
 	}
-	
-	public void deleteById(String id) {
-		materialInfoRepository.delete(id);
+
+	public void deleteById(String ids){
+		if (ids.contains(",")){
+			String[] idArray = ids.split(",");
+			for (String id : idArray){
+				materialInfoRepository.delete(id);
+			}
+		}else {
+			materialInfoRepository.delete(ids);
+		}
 	}
 
 	public void pageByHql(PageEntity<MaterialInfo> pageEntity, Map<String, Object> paramaMap) {

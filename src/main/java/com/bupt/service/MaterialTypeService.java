@@ -15,7 +15,7 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class MaterialTypeService extends BasePageService {
+public class MaterialTypeService extends BasePageService<MaterialType,String> {
     @Autowired
     private MaterialTypeRepository repository;
 
@@ -24,6 +24,17 @@ public class MaterialTypeService extends BasePageService {
     }
     public  MaterialType findOne(String id){
         return repository.findOne(id);
+    }
+
+    public void deleteById(String ids){
+        if (ids.contains(",")){
+            String[] idArray = ids.split(",");
+            for (String id : idArray){
+                repository.delete(id);
+            }
+        }else {
+            repository.delete(ids);
+        }
     }
     public void pageByHql(PageEntity<MaterialType> pageEntity, Map<String, Object> paramaMap) {
         StringBuilder sql = new StringBuilder(" from MaterialType where 1=1 ");
