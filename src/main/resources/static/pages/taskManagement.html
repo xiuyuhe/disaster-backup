@@ -172,7 +172,7 @@
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close"><span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <h4 class="modal-title" id="myModalLabel">人员</h4>
+                                                    <h4 class="modal-title" id="myModalLabel">新建任务</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div>
@@ -330,6 +330,7 @@
                                              <th><a href="#">频率</a></th>
                                             <th><a href="#">接受任务人员</a></th>
                                             <th><a href="#">操作</a></th>
+                                            <th><a href="#">修改</a></th>
                                      </tr>
                                     </thead>
                                     <tbody>
@@ -340,8 +341,106 @@
                 <td>{{item.name}}</td>
                 <td>{{item.frequency}}</td>
                 <td>{{item.member}}</td>
-                <td>{{item.createTime}}</td>           
+                 <td><a href=# data-toggle="modal" data-target="#myModal{{index}}">查看详情</a>
+                <div class="modal fade" id="myModal{{index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document" style="width: 1000px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">任务信息详情</h4>
+                            </div>
+                            <div class="modal-body">
 
+
+                                <form class="form-horizontl">
+                                    <div class="form-group">
+                                        <label for="info_name" class="col-sm-1 control-label">任务编码:</label>
+                                        <div class="col-sm-3">
+                                            <input disabled type="text" class="form-control" id="info_name" value={{item.code}}>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="info_phone" class="col-sm-1 control-label">任务名称:</label>
+                                        <div class="col-sm-3">
+                                            <input  disabled type="text" class="form-control" id="info_phone"  value="{{item.name}}">
+                                        </div>
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="info_phone" class="col-sm-1 control-label">频率:</label>
+                                        <div class="col-sm-3">
+                                            <input  disabled type="text" class="form-control" id="info_phone"  value="{{item.frequency}}">
+                                        </div>
+                                    </div>
+                                      <div class="form-group">
+                                        <label for="info_phone" class="col-sm-1 control-label">任务人员:</label>
+                                        <div class="col-sm-3">
+                                            <input  disabled type="text" class="form-control" id="info_phone"  value="{{item.member}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                            <label   class="col-sm-12 control-label" style="margin-top: 10px">上传图片:</label>
+                                            <img src="../img/1.jpg" class="img-responsive col-sm-4" alt="Responsive image">
+                                            <img src="../img/1.jpg" class="img-responsive col-sm-4" alt="Responsive image">
+                                            <img src="../img/1.jpg" class="img-responsive col-sm-4" alt="Responsive image">
+                                        </div>
+                                         <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs" role="tablist" 10px">
+                                        <li  style="margin-top:10px" role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">收到的任务</a></li>
+                                        <li  style="margin-top:10px" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">收到的培训</a></li>
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="home">
+                                                <table class="table table-hover">
+                                                    <tr>
+                                                        <th style="width: 150px">序号</th>
+                                                        <th style="width: 150px">任务名称</th>
+                                                        <th style="width: 150px">频率</th>
+                                                        <th style="width: 150px">下发数量</th>
+                                                        <th style="width: 150px">完成状态</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1 </td>
+                                                        <td>2</td>
+                                                        <td>3 </td>
+                                                        <td>4</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+
+                                            <div role="tabpanel" class="tab-pane" id="profile">
+                                                <table class="table table-hover">
+                                                    <tr>
+                                                        <th style="width: 150px">序号</th>
+                                                        <th style="width: 150px">课程名称</th>
+                                                        <th style="width: 150px">下发数量</th>
+                                                        <th style="width: 150px">完成状态</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1 </td>
+                                                        <td>2</td>
+                                                        <td>3 </td>
+                                                        <td>4</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td><a href="#" onclick="editUser({{item}})">修改</a></td>
             </tr>{{/each}}
                                     </tbody>
                                 </table>
@@ -349,103 +448,51 @@
 
     <script id="tpl_createOrUpdateForm" type="text/html">
 <form class="form-horizontal" id="trueCreateOrUpdateForm">
-    <input type="text" hidden name="id" {{if user}} {{if user.id}} value = {{user.id}} {{/if}}{{/if}}>
+   <!--  <input type="text" hidden name="id" {{if task}} {{if task.id}} value = {{task.id}} {{/if}}{{/if}}> -->
     <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">姓名:</label>
+        <label for="name" class="col-sm-2 control-label">任务编码:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入任务编码" name="name"
+                {{if task}} {{if task.code}} value = {{task.code}} {{/if}}{{/if}}
+            >
+        </div>
+    </div>
+     
+     <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">任务名称:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入任务名称" name="name"
+                {{if task}} {{if task.name}} value = {{task.name}} {{/if}}{{/if}}
+            >
+        </div>
+    </div>
+     <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">频率:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入频率" name="name"
+                {{if task}} {{if task.frequency}} value = {{task.frequency}} {{/if}}{{/if}}
+            >
+        </div>
+    </div>
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">接受任务人员:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入接受任务人员" name="name"
+                {{if task}} {{if task.member}} value = {{task.membe}} {{/if}}{{/if}}
+            >
+        </div>
+    </div>
+      <!-- <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">操作:</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="name" placeholder="请输入姓名" name="name"
                 {{if user}} {{if user.name}} value = {{user.name}} {{/if}}{{/if}}
             >
         </div>
-    </div>
+    </div> -->
+    
     <div class="form-group">
-        <label  class="col-sm-2 control-label">性别:</label>
-        <div class="col-sm-10">
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions"
-                       {{if user}} {{if user.sex =='男'}} checked {{/if}}{{/if}}
-                       name="sex" value="男"> 男
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions"
-                       {{if user}} {{if user.sex =='女'}} checked {{/if}}{{/if}}
-                       name="sex" value="女"> 女
-            </label>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="birthday" class="col-sm-2 control-label">生日:</label>
-        <div class="col-sm-10">
-            <input type="date" class="form-control" id="birthday"
-                   {{if user}} {{if user.birthday}} value = {{user.birthday}} {{/if}}{{/if}}
-                   name="birthday">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="position" class="col-sm-2 control-label">职务:</label>
-        <div class="col-sm-10">
-            <select name="position" id="position"
-                    class="form-control">
-                <option value=""> -- </option>
-                <option value="1" {{if user}} {{if user.position =='1'}} selected {{/if}}{{/if}}>员工</option>
-                <option value="2" {{if user}} {{if user.position =='2'}} selected {{/if}}{{/if}}>站长</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="educational" class="col-sm-2 control-label">教育程度:</label>
-        <div class="col-sm-10">
-            <select name="educational" id="educational"
-                    class="form-control">
-                <option value=""> -- </option>
-                <option value="1" {{if user}} {{if user.educational ==1}} selected {{/if}}{{/if}}>小学</option>
-                <option value="2" {{if user}} {{if user.educational ==2}} selected {{/if}}{{/if}}>初中</option>
-                <option value="3" {{if user}} {{if user.educational ==3}} selected {{/if}}{{/if}}>高中</option>
-                <option value="4" {{if user}} {{if user.educational ==4}} selected {{/if}}{{/if}}>本科</option>
-                <option value="5" {{if user}} {{if user.educational ==5}} selected {{/if}}{{/if}}>硕士</option>
-                <option value="6" {{if user}} {{if user.educational ==6}} selected {{/if}}{{/if}}>博士</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="professional" class="col-sm-2 control-label">职业背景:</label>
-        <div class="col-sm-10">
-            <select name="professional" id="professional"
-                    class="form-control">
-                <option value=""> -- </option>
-                <option value="军人" {{if user}} {{if user.professional =='军人'}} selected {{/if}}{{/if}}>军人</option>
-                <option value="医生" {{if user}} {{if user.professional =='医生'}} selected {{/if}}{{/if}}>医生</option>
-                <option value="工人" {{if user}} {{if user.professional =='工人'}} selected {{/if}}{{/if}}>工人</option>
-                <option value="学生" {{if user}} {{if user.professional =='学生'}} selected {{/if}}{{/if}}>学生</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="professional" class="col-sm-2 control-label">站点:</label>
-        <div class="col-sm-10">
-            <select name="siteInfoId" id="site"
-                    class="form-control">
-                <option value=""> -- </option>
-                {{each sites item}}
-                <option value="{{item.value}}" {{if user}} {{if user.siteInfoId == item.value}} selected {{/if}}{{/if}}>{{item.name}}</option>
-                {{/each}}
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="mobilePhone" class="col-sm-2 control-label">手机号码:</label>
-        <div class="col-sm-10">
-            <input type="number" required class="form-control" id="mobilePhone" placeholder="手机号码"
-                   {{if user}}
-                        {{if user.mobilePhone}}
-                            value = {{user.mobilePhone}}
-                        {{/if}}
-                    {{/if}}
-                   name="mobilePhone">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="pic" class="col-sm-2 control-label">上传照片:</label>
+        <label for="pic" class="col-sm-2 control-label">上传文件:</label>
         <div class="col-sm-10">
             <input type="file" id="pic">
         </div>
@@ -487,6 +534,29 @@
        function generatPage() {
         return service.generatePagination('taskInfo/page', queryUserData, 'pageBar', getTask);
     }
+       // 修改用户 表单
+    function editUser(item) {
+        var data = {sites: siteList};
+        data['task'] = item;
+        service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        $('#addUserModle').modal('show');
+    }
+
+    // 创建或者修改用户 操作
+    function createOrUpdate() {
+        var data = service.transformFormData($('#trueCreateOrUpdateForm'));
+       /* if(!data.mobilePhone){
+            return
+        }*/
+        service.postService('taskInfo/saveOrUpdate', data)
+                .done(function (json) {
+                    location.reload();
+                        })
+                .fail(function () {
+                    alert("something wrong");
+                });
+    }
+
 
 
      // 页面初始化
