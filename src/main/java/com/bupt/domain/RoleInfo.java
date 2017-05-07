@@ -12,6 +12,7 @@ public class RoleInfo {
     private String id;
     private String roleName;
     private String authority;
+    private String code;
 
     @Id
     @Column(name = "ID", nullable = false, length = 32)
@@ -31,6 +32,16 @@ public class RoleInfo {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    @Basic
+    @Column(name = "CODE", nullable = true, length = 16)
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Basic

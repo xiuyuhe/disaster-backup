@@ -12,7 +12,9 @@ public class Authorization {
     private String authorizationCode;
     private String phoneNumber;
     private String status;
+    private String userInfoId;
     private Date effectiveTime;
+    private UserInfo userInfo;
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -67,4 +69,22 @@ public class Authorization {
         this.effectiveTime = effectiveTime;
     }
 
+    @Basic
+    @Column(name = "USER_INFO_ID")
+    public String getUserInfoId() {
+        return userInfoId;
+    }
+
+    public void setUserInfoId(String userInfoId) {
+        this.userInfoId = userInfoId;
+    }
+
+    @Transient
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 }
