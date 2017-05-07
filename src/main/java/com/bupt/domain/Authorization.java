@@ -2,6 +2,7 @@ package com.bupt.domain;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import javax.persistence.Table;
 
 @Entity
@@ -11,7 +12,7 @@ public class Authorization {
     private String authorizationCode;
     private String phoneNumber;
     private String status;
-    private Timestamp effectiveTime;
+    private Date effectiveTime;
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -26,7 +27,7 @@ public class Authorization {
     }
 
     @Basic
-    @Column(name = "AUTHORIZATION")
+    @Column(name = "AUTHORIZATION_CODE")
     public String getAuthorizationCode() {
         return authorizationCode;
     }
@@ -58,11 +59,11 @@ public class Authorization {
 
     @Basic
     @Column(name = "EFFECTIVE_TIME")
-    public Timestamp getEffectiveTime() {
+    public Date getEffectiveTime() {
         return effectiveTime;
     }
 
-    public void setEffectiveTime(Timestamp effectiveTime) {
+    public void setEffectiveTime(Date effectiveTime) {
         this.effectiveTime = effectiveTime;
     }
 
