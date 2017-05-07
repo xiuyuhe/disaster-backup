@@ -4,7 +4,9 @@ import com.bupt.common.base.BasePageService;
 import com.bupt.common.base.PageEntity;
 import com.bupt.domain.Authorization;
 import com.bupt.domain.EquipmentInfo;
+import com.bupt.domain.UserInfo;
 import com.bupt.repository.AuthorizationRespository;
+import com.bupt.repository.UserInfoRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,10 +25,23 @@ public class AuthorizationService extends BasePageService<Authorization,String>{
 
     @Autowired
     private AuthorizationRespository authorizationRespository;
+    @Autowired
+    private UserInfoRepository userInfoRepository;
 
-    public void save(Authorization entity ){authorizationRespository.save(entity);}
+    public void save(Authorization entity ){
+        if (entity != null && StringUtils.isNotBlank(entity.getUserInfoId())) {
+            UserInfo userInfo = userInfoRepository.findOne(entity.getUserInfoId());
+            entity.setPhoneNumber(userInfo.getMobilePhone());
+        }
+        authorizationRespository.save(entity);
+    }
     public Authorization findOne(String id){
-        return authorizationRespository.findOne(id);
+        Authorization authorization = authorizationRespository.findOne(id);
+        if (authorization != null && StringUtils.isNotBlank(authorization.getUserInfoId())) {
+            UserInfo userInfo = userInfoRepository.findOne(authorization.getUserInfoId());
+            authorization.setUserInfo(userInfo);
+        }
+        return authorization;
     }
 
     public void deleteById(String ids){
@@ -46,5 +61,4 @@ public class AuthorizationService extends BasePageService<Authorization,String>{
         }
         super.pageByHql(sql.toString(),pageEntity,paramaMap);
     }
-
 }
