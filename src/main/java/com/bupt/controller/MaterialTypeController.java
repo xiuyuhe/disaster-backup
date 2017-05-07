@@ -49,4 +49,15 @@ public class MaterialTypeController extends BaseCommonController{
         }
         return parameterMap;
     }
+
+    @RequestMapping("/deleteById")
+    public String deleteById(String id) {
+        materialTypeoService.deleteById(id);
+        return sendSuccessMessage();
+    }
+    @RequestMapping("/findById")
+    public String findById(String id){
+        MaterialType materialType = materialTypeoService.findOne(id);
+        return sendSuccessMessage(materialType);
+    }
 }

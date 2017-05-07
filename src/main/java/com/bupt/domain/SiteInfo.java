@@ -18,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 
 @Entity
-@Table(name = "site_info", schema = "disaster-recovery", catalog = "")
+@Table(name = "site_info")
 public class SiteInfo {
 	private String id;
 	private String code;

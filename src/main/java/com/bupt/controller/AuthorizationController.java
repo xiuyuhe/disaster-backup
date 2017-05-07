@@ -36,7 +36,11 @@ public class AuthorizationController extends BaseCommonController {
         authorizationService.pageByHql(pageEntity,buildParameter(entity));
         return sendSuccessMessage(pageEntity);
     }
-
+    @RequestMapping("/findById")
+    public String findOne(String id){
+        Authorization authorization = authorizationService.findOne(id);
+        return sendSuccessMessage(authorization);
+    }
     private Map<String, Object> buildParameter(Authorization entity) {
         Map<String, Object> parameterMap = new HashMap<>();
         if (StringUtils.isNotBlank(entity.getPhoneNumber())) { // 种类编码

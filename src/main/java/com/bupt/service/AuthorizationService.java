@@ -19,7 +19,7 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class AuthorizationService extends BasePageService{
+public class AuthorizationService extends BasePageService<Authorization,String>{
 
     @Autowired
     private AuthorizationRespository authorizationRespository;

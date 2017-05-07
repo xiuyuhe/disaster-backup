@@ -36,7 +36,11 @@ public class MaterialInfoController extends BaseCommonController {
 		materialInfoService.deleteById(id);
 		return sendSuccessMessage();
 	}
-
+	@RequestMapping("/findById")
+	public String findById(String id){
+		MaterialInfo materialInfo = materialInfoService.findOne(id);
+		return sendSuccessMessage(materialInfo);
+	}
 	@RequestMapping(value = "/page")
 	public String page(MaterialInfo materialInfo, int start) {
 		PageEntity<MaterialInfo> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);

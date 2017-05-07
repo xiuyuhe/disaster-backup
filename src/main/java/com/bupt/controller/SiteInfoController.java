@@ -53,4 +53,15 @@ public class SiteInfoController extends BaseCommonController {
 		}
 		return parameterMap;
 	}
+
+	@RequestMapping("/deleteById")
+	public String deleteById(String id) {
+		siteInfoService.deleteById(id);
+		return sendSuccessMessage();
+	}
+	@RequestMapping("/findById")
+	public String findById(String id){
+		SiteInfo siteInfo = siteInfoService.findOne(id);
+		return sendSuccessMessage(siteInfo);
+	}
 }

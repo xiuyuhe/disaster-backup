@@ -56,4 +56,10 @@ public class TaskInfoController extends BaseCommonController{
 		}
 		return parameterMap;
 	}
+
+	@RequestMapping("/findById")
+	public String findById(String id){
+		TaskInfo taskInfo = taskInfoService.findOne(id);
+		return sendSuccessMessage(taskInfo);
+	}
 }

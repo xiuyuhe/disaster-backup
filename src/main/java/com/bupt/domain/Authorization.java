@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "authorization", schema = "disaster-recovery", catalog = "")
+@Table(name = "authorization")
 public class Authorization {
     private String id;
     private String authorizationCode;

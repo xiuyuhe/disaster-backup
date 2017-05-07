@@ -41,5 +41,16 @@ public class PatrolPotentialController extends BaseCommonController{
         }
         return parameterMap;
     }
+
+    @RequestMapping("/deleteById")
+    public String deleteById(String id) {
+        patrolPotentialoService.deleteById(id);
+        return sendSuccessMessage();
+    }
+    @RequestMapping("/findById")
+    public String findById(String id){
+        PatrolPotential patrolPotential = patrolPotentialoService.findOne(id);
+        return sendSuccessMessage(patrolPotential);
+    }
 }
 
