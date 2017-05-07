@@ -53,4 +53,14 @@ public class EquipmentInfoController extends BaseCommonController{
         }
         return parameterMap;
     }
+
+    @RequestMapping("/deleteById")
+    public String deleteById(String ids){
+        if (StringUtils.isNotBlank(ids)){
+            equipmentInfooService.deleteById(ids);
+            return sendSuccessMessage();
+        }else {
+            return sendFailMessage();
+        }
+    }
 }
