@@ -334,7 +334,7 @@
                                      </tr>
                                     </thead>
                                     <tbody>
-                                    {{each results  item}}
+                                    {{each results  item index}}
                                     <tr>
               <th><input type="checkbox" id="myCheckBox"/></th>
               <td>{{item.code}}</td>
@@ -446,59 +446,7 @@
                                 </table>
     </script>
 
-    <script id="tpl_createOrUpdateForm" type="text/html">
-<form class="form-horizontal" id="trueCreateOrUpdateForm">
-   <!--  <input type="text" hidden name="id" {{if task}} {{if task.id}} value = {{task.id}} {{/if}}{{/if}}> -->
-    <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">任务编码:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" placeholder="请输入任务编码" name="name"
-                {{if task}} {{if task.code}} value = {{task.code}} {{/if}}{{/if}}
-            >
-        </div>
-    </div>
-     
-     <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">任务名称:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" placeholder="请输入任务名称" name="name"
-                {{if task}} {{if task.name}} value = {{task.name}} {{/if}}{{/if}}
-            >
-        </div>
-    </div>
-     <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">频率:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" placeholder="请输入频率" name="name"
-                {{if task}} {{if task.frequency}} value = {{task.frequency}} {{/if}}{{/if}}
-            >
-        </div>
-    </div>
-      <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">接受任务人员:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" placeholder="请输入接受任务人员" name="name"
-                {{if task}} {{if task.member}} value = {{task.membe}} {{/if}}{{/if}}
-            >
-        </div>
-    </div>
-      <!-- <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">操作:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" placeholder="请输入姓名" name="name"
-                {{if user}} {{if user.name}} value = {{user.name}} {{/if}}{{/if}}
-            >
-        </div>
-    </div> -->
-    
-    <div class="form-group">
-        <label for="pic" class="col-sm-2 control-label">上传文件:</label>
-        <div class="col-sm-10">
-            <input type="file" id="pic">
-        </div>
-    </div>
-</form>
-</script>
+   xi
 
     
 

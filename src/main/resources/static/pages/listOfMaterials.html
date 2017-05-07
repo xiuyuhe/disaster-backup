@@ -6,7 +6,6 @@
     <title>应急物资管理</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
-    <link rel="shortcut icon" href="../favicon.ico">
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -20,6 +19,8 @@
     <script src="../js/jquery.validate.js" type="text/javascript"></script>
     <script src="../js/jquery.easyui.min.js" type="text/javascript"></script>
     <script src="../js/template.js"></script>
+    <script src="../js/service.js" type="text/javascript"></script>
+        <script src="../js/jqPaginator.js"></script>
     <style type="text/css">
     body {
         font-family: "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
@@ -128,28 +129,7 @@
                         </form>
                         <div class="box">
                             <div class="box-body table-responsive">
-                                <table id="patrolTable" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                         <th><input type="checkbox" id="myCheckBox"/></th>                                                                
-                                            <th><a href="#">种类编码 </a></th>
-                                             <th><a href="#">种类名称</a></th>
-                                             <th><a href="#">分类级别</a></th>
-                                            <th><a href="#">上级种类</a></th>
-                                            <th><a href="#">操作</a></th>
-                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                  <th><input type="checkbox" id="myCheckBox"/></th>
-                  <td>M001</td>
-                    <td>交通与岩土工程抢修</td>
-                    <td>一级分类</td>
-                    <td>抗雪除冻作业</td>
-                    <td>查看详情</td> 	 		
-            </tr>
-        </tbody>
-    </table>
+                                <div id="materialsTable"></div>
 
           <div class="col-xs-3">
         <div class="input-group pull-right" style="padding-top: 10px">
@@ -159,28 +139,38 @@
         </div>
 
     <div class="pull-right">
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-             <li>
-                 <a href="#" aria-label="Previous">
-                 <span aria-hidden="true">&laquo;</span>
-                </a>
-             </li>
-            <li  class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-             <li><a href="#">5</a></li>
-             <li><a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                </a>
-             </li>
-        </ul>
-</nav>
+            <ul class="pagination" id="pageBar"></ul>
 </div>
   <div class="container" style="margin: 10px">
         <div class="btn-group" role="group" aria-label="...">
-    <button type="button" class="btn btn-default">新增种类</button>
+    <button type="button" class="btn btn-default" data-toggle="modal"
+                                           onclick=createUser() >
+                                        新增种类
+                                    </button>
+                                    <div class="modal fade" id="addUserModle" tabindex="-1" role="dialog"
+                                         aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">新建任务</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>
+                                                        <div id="createOrUpdateForm"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        关闭/取消
+                                                    </button>
+                                                    <button type="button" onclick=createOrUpdate() class="btn btn-primary">保存更改</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
     <button type="button" class="btn btn-default">删除种类</button>
         </div>
       </div>
@@ -298,7 +288,6 @@
         <script src="../js/My97DatePicker/WdatePicker.js" type="text/javascript">
         </script>
         <script src="../js/AdminLTE/app.js " type="text/javascript "></script>
-        <script src="../js/index/patrol.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $.get("http://localhost:8080/pages/sidebar.html",function (data) {
@@ -310,6 +299,162 @@
                 var html = render(args);
                 $('#sidebar').html(html);
             })
+        })
+    </script>
+    <script type="text/html" id="tpl-materialsTable">
+        <table id="patrolTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                         <th><input type="checkbox" id="myCheckBox"/></th>                                                                
+                                            <th><a href="#">种类编码 </a></th>
+                                             <th><a href="#">种类名称</a></th>
+                                             <th><a href="#">分类级别</a></th>
+                                            <th><a href="#">上级种类</a></th>
+                                            <th><a href="#">操作</a></th>
+                                            <th><a href="#">修改</a></th>
+                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{each results item index}}
+                                    <tr>
+                  <th><input type="checkbox" id="myCheckBox"/></th>
+                  <td>{{item.code}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.clazz}}</td>
+                    <td>{{item.parentCode}}</td>
+                    <td>{{item.name}}</td>  
+                     <td><a href="#" onclick="editUser({{item}})">修改</a></td>         
+            </tr>{{/each}}
+        </tbody>
+    </table>
+    </script>
+
+     <script id="tpl_createOrUpdateForm" type="text/html">
+<form class="form-horizontal" id="trueCreateOrUpdateForm">
+    <input type="text" hidden name="id" {{if task}} {{if task.id}} value = {{task.id}} {{/if}}{{/if}}>
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">种类编码:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入任务编码" name="code"
+                {{if task}} {{if task.code}} value = {{task.code}} {{/if}}{{/if}}
+            >
+        </div>
+    </div>
+     
+     <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">种类名称:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入任务名称" name="name"
+                {{if task}} {{if task.name}} value = {{task.name}} {{/if}}{{/if}}
+            >
+        </div>
+    </div>
+     <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">分类级别:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入频率" name="clazz"
+                {{if task}} {{if task.clazz}} value = {{task.clazz}} {{/if}}{{/if}}
+            >
+        </div>
+    </div>
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">上级种类:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入接受任务人员" name="parentCode"
+                {{if task}} {{if task.parentCode}} value = {{task.parentCode}} {{/if}}{{/if}}
+            >
+        </div>
+    </div>
+      <!-- <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">操作:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入姓名" name="name"
+                {{if user}} {{if user.name}} value = {{user.name}} {{/if}}{{/if}}
+            >
+        </div>
+    </div> -->
+    
+    <div class="form-group">
+        <label for="pic" class="col-sm-2 control-label">上传文件:</label>
+        <div class="col-sm-10">
+            <input type="file" id="pic">
+        </div>
+    </div>
+</form>
+</script>
+
+    <script type="text/javascript">
+     var queryUserData = {start: 0};
+     var siteList;
+     // 查询
+    function queryFun() {
+        var data = service.transformFormData($('#queryForm'));
+        queryUserData = data;
+        getMateral(1);
+        generatPage();
+    }
+
+         function getMateral(page) {
+        var start = (page - 1) * service.pageSize;
+        queryUserData['start'] = start;
+        service.postService('materialType/page', queryUserData)
+                .done(function (json) {
+                    if (json.status != "true") {
+                        alert("something wrong");
+                        return;
+                    }
+                    var trueData = json.data;
+                    service.generateTpl('tpl-materialsTable', 'materialsTable', trueData);
+
+                })
+                .fail(function () {
+                    alert("something wrong");
+                });
+    }
+     // 生成分页
+       function generatPage() {
+        return service.generatePagination('materialType/page', queryUserData, 'pageBar', getMateral);
+    }
+    //新增
+      function createUser(){
+        var data = {sites: siteList};
+        service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        $('#addUserModle').modal('show');
+    }
+        // 修改用户 表单
+    function editUser(item) {
+        var data = {sites: siteList};
+        data['task'] = item;
+        service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        $('#addUserModle').modal('show');
+    }
+     // 创建或者修改用户 操作
+    function createOrUpdate() {
+        var data = service.transformFormData($('#trueCreateOrUpdateForm'));
+       /* if(!data.mobilePhone){
+            return
+        }*/
+        service.postService('materialType/saveOrUpdate', data)
+                .done(function (json) {
+                    location.reload();
+                        })
+                .fail(function () {
+                    alert("something wrong");
+                });
+    }
+
+     function init() {
+        getMateral(1);
+        generatPage();
+        /*service.getService('userInfo/findAllSite').done(function(sites){
+            var data = {sites: sites.data};
+            siteList = sites.data;
+            service.generateTpl('tpl_form','myform',data);
+            service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        });*/
+    }
+        $(function(){
+            init();
         })
     </script>
 
