@@ -142,7 +142,7 @@
     <div class="container" style="margin: 10px">
         <div class="btn-group" role="group" aria-label="...">
     <button type="button" class="btn btn-default" data-toggle="modal"
-                                           onclick=createUser() >
+                                           onclick=createRole()>
                                         新增角色
                                     </button>
                                     <div class="modal fade" id="addUserModle" tabindex="-1" role="dialog"
@@ -153,7 +153,7 @@
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close"><span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <h4 class="modal-title" id="myModalLabel">新建任务</h4>
+                                                    <h4 class="modal-title" id="myModalLabel">添加角色</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div>
@@ -415,17 +415,53 @@
                 </div>
             </td>         
 
-            </tr>
+            </tr>{{/each}}
                                     </tbody>
                                 </table>
     </script>
+
+
+    <script type="text/html" id="tpl_createOrUpdateForm">
+    <form class="form-horizontal" id="trueCreateOrUpdateForm">
+    <input type="text" hidden name="id" {{if equipment}} {{if equipment.id}} value = {{equipment.id}} {{/if}}{{/if}}>
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">角色编码:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="请输入设备编码" name="name"
+                {{if equipment}} {{if equipment.id}} value = {{equipment.id}} {{/if}}{{/if}}
+            >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="position" class="col-sm-2 control-label">角色名称:</label>
+        <div class="col-sm-10">
+            <select name="position" id="position"
+                    class="form-control">
+                <option value=""> -- </option>
+                <option value="1" {{if equipment}} {{if equipment.type =='1'}} selected {{/if}}{{/if}}>大型</option>
+                <option value="2" {{if equipment}} {{if equipment.type =='2'}} selected {{/if}}{{/if}}>小型</option>
+            </select>
+        </div>
+    </div>
+    
+
+    <div class="form-group">
+        <label for="pic" class="col-sm-2 control-label">上传照片:</label>
+        <div class="col-sm-10">
+            <input type="file" id="pic">
+        </div>
+    </div>
+</form>
+    
+</script>
     <script type="text/javascript">
     var queryUserData = {start: 0};
+    var siteList;
     /*分页*/
     function getRole(page){
         var start=(page - 1) * service.pageSize;
         queryUserData['start']=start;
-        service.postService('roleInfo/page','queryUserData')
+        service.postService('roleInfo/page',queryUserData)
         .done(function(json){
             if(json.status!="true"){
                 alert("something wrong");
@@ -445,6 +481,21 @@
        function generatPage() {
         return service.generatePagination('roleInfo/page', queryUserData, 'pageBar', getRole);
     }
+
+    // 创建或者修改用户 操作
+    function createOrUpdate() {
+        var data = service.transformFormData($('#trueCreateOrUpdateForm'));
+     /*   if(!data.mobilePhone){
+            return
+        }*/
+        service.postService('roleInfo/saveOrUpdate', data)
+                .done(function (json) {
+                    location.reload();
+                        })
+                .fail(function () {
+                    alert("something wrong");
+                });
+    }
     /*页面初始化*/
     function init(){
         getRole(1);
@@ -452,6 +503,20 @@
 
 
     }
+
+    function createRole(){
+        var data = {sites: siteList};
+        service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        $('#addUserModle').modal('show');
+    }
+
+     // 创建用户 表单
+    function createUser(){
+        var data = {sites: siteList};
+        service.generateTpl('tpl_createOrUpdateForm', 'createOrUpdateForm', data);
+        $('#addUserModle').modal('show');
+    }
+
         
         $(function(){
             init();
